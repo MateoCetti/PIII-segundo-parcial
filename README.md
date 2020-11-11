@@ -79,9 +79,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- Contactanos -->
 ## Contactanos
 
-Gino Antonel - [Cuenta de github](https://github.com/GinoAntonel) - [Email](ginoantonel.ga@gmail.com)
+Gino Antonel - [Cuenta de github](https://github.com/GinoAntonel) - ginoantonel.ga@gmail.com
 
-Mateo Cetti - [Cuenta de github](https://github.com/MateoCetti) - [Email](mateocetti2000@gmail.com)
+Mateo Cetti - [Cuenta de github](https://github.com/MateoCetti) - mateocetti2000@gmail.com
 
 Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
