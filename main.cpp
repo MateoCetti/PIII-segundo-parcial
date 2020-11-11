@@ -8,56 +8,67 @@ using namespace std;
 
 bool hasAuxiliar(char *nextArg){
     if(nextArg[0] != '-'){
-        cout<< " Auxiliar: "<< nextArg<<"\n";
         return 1;
     }
     return 0;
 }
 
-void readArguments(int argc, char **argv){
+int *readArguments(int argc, char **argv){
+    int *myArguments = new int[5]{-1, -1, -1, -1, -1};
     for (int i = 1; i < argc; i++){
         if(argv[i][0] == '-'){
             if (strcmp(argv[i], "-estad") == 0) {
-                cout << "Argumento " << i << " " << argv[i];
+                myArguments[0] = 0;
             }
             else if(strcmp(argv[i], "-p_casos")  == 0) {
-                cout << "Argumento " << i << " " << argv[i];
                 if(i < argc-1){
                     bool x = hasAuxiliar(argv[i+1]);
                     i+=x;
+                    myArguments[1] = stoi(argv[i]);
+                }else{
+                    myArguments[1] = 0;
                 }
             }
-            else if(strcmp(argv[i], "-p_muertes")  == 0) {
-                cout << "Argumento " << i << " " << argv[i];
+            else if(strcmp(argv[i], "-p_muertes")  == 0) {                
                 if(i < argc-1){
                     bool x = hasAuxiliar(argv[i+1]);
                     i+=x;
+                    myArguments[2] = stoi(argv[i]);
+                }else{
+                    myArguments[2] = 0;
                 }
             }
-            else if(strcmp(argv[i], "-casos_edad")  == 0) {
-                cout << "Argumento " << i << " " << argv[i];
+            else if(strcmp(argv[i], "-casos_edad")  == 0) {               
                 if(i < argc-1){
                     bool x = hasAuxiliar(argv[i+1]);
                     i+=x;
+                    myArguments[3] = stoi(argv[i]);
+                }else{
+                    myArguments[3] = 0;
                 }
             }
-            else if(strcmp(argv[i], "-casos_cui")  == 0) {
-                cout << "Argumento " << i << " " << argv[i];
+            else if(strcmp(argv[i], "-casos_cui")  == 0) {              
                 if(i < argc-1){
                     bool x = hasAuxiliar(argv[i+1]);
                     i+=x;
+                    myArguments[4] = stoi(argv[i]);
+                }else{
+                    myArguments[4] = 0;
                 }
             }
             else{
                 cout<<"Ingrese un argumento valido.\n";
+                myArguments[0] = -2;
+                break;
             }
-            cout<< "\n\n";
         }
         else{
             cout<<"Ingrese un argumento valido.\n";
+            myArguments[0] = -2;
         }
     }
     cout << "\n";
+    return myArguments;
 }
 
 void exploreCSV()
@@ -103,7 +114,10 @@ void exploreCSV()
 }
 
 int main(int argc, char **argv) {
-    //readArguments(argc, argv);
-    exploreCSV();
+    int* myArguments = readArguments(argc, argv);
+    for(int i = 0; i < 5; i++){
+        cout << " " << myArguments[i]<<"\n";
+    }
+    //exploreCSV();
     return 0;
 }
