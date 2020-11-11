@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "string.h"
+#include "rsc/Lista.h"
 
 using namespace std;
 
@@ -59,7 +60,50 @@ void readArguments(int argc, char **argv){
     cout << "\n";
 }
 
+void exploreCSV()
+{
+
+    int interest[] = { 0, 2, 3, 12, 13, 14, 17, 20 };
+
+    int nColumns = sizeof(interest) / sizeof(interest[0]);
+
+    fstream fin;
+    fin.open("./Covid19Casos.csv", ios::in);
+
+    Lista<string> row;
+
+    string line, word;
+
+    for (int i = 0; i < 4; i++)
+    {
+        row.vaciar();
+        getline(fin, line);
+
+        stringstream s(line);
+
+        while (getline(s, word, ','))
+        {
+            row.insertarUltimo(word);
+        }
+
+        for(int j=0; j<row.getTamanio(); j++){
+            cout<<row.getDato(j);
+        }
+        /*
+        if (row.getDato(20).compare("Confirmado") == 0)
+        {
+            for (int j = 0; j < nColumns; j++)
+            {
+                cout << row.getDato(interest[j]) << " ";
+            }
+        }
+        */
+        cout << "\n";
+    }
+}
+
 int main(int argc, char **argv) {
-    readArguments(argc, argv);
+    //readArguments(argc, argv);
+    exploreCSV();
     return 0;
 }
