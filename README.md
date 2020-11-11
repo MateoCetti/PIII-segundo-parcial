@@ -12,8 +12,8 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
+<!-- Indice -->
+## Indice
 
 * [Acerca del proyecto](#acerca-del-proyecto)
   * [Desarrollado con](#desarrollado-con)
@@ -36,7 +36,7 @@ Here's a blank template to get started:
 
 ### Desarrollado con
 
-* []()
+* [C++](http://www.cplusplus.com/)
 * []()
 * []()
 
@@ -79,7 +79,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- Contactanos -->
 ## Contactanos
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Gino Antonel - [Cuenta de github](https://github.com/GinoAntonel) - [Email](ginoantonel.ga@gmail.com)
+
+Mateo Cetti - [Cuenta de github](https://github.com/MateoCetti) - [Email](mateocetti2000@gmail.com)
 
 Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
