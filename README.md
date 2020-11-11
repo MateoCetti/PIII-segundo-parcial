@@ -1,5 +1,3 @@
-
-<br />
 <p align="center">
 
   <h3 align="center">Programacion III - Parcial 2</h3>
@@ -29,51 +27,50 @@
 <!-- Acerca del proyecto -->
 ## Acerca del proyecto
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`
+Debido al caso de pandemia del año 2020, deseamos hacer un visualizador de datos de los casos
+de Argentina. Para esto se quiere poder mostrar datos ordenados y agrupados en distintas categorías.
+Como así también hacer un procesado simple de los datos y mostrar alguna información extra
 
 
 ### Desarrollado con
 
 * [C++](http://www.cplusplus.com/)
-* []()
-* []()
 
 
 
 <!-- Primeros Pasos -->
 ## Primeros Pasos
 
-To get a local copy up and running follow these simple steps.
+Aqui se mostraran unas pequeñas instrucciones acerca de como obtener una copia local del repositorio y poder correrla (en Linux).
+
 
 ### Requisitos previos
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+El requisito previo esencial para el buen funcionamiento del codigo es tener el archivo Covid19Casos.CSV brindado por el el Ministerio de salud de la Argentina, el cual se puede obtener [aqui](http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina)
 
 ### Instalacion
 
-1. Clone the repo
+1. Clonar el repositorio
 ```sh
-git clone https://github.com/github_username/repo_name.git
+git clone https://github.com/MateoCetti/PIII-segundo-parcial.git
 ```
-2. Install NPM packages
+2. mover el archivo Covid19Casos.CSV al directorio del proyecto
 ```sh
-npm install
+mv Covid19Casos.CSV ./PIII-segundo-parcial/
 ```
-
-
+3. moverse al directorio del proyecto
+```sh
+cd PIII-segundo-parcial/
+```
+4. compilar el codigo
+```sh
+g++ *.cpp *.h -o covid19
+```
 
 <!-- Uso -->
 ## Uso
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Para usar el comando [Bash], simplemente escribe ./covid19 y elige alguno de los parametros indicados en la siguiente [Documentacion](https://docs.google.com/document/d/1CxsKLt2K9ZAEqB5bbsYQTNhIOhaODKXgXaw-z-IXA4k/edit?usp=sharing)_
 
 
 <!-- Contactanos -->
