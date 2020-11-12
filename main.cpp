@@ -1,18 +1,32 @@
+/* Imprimir en consola, leer archivos, procesar streams */
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include "string.h"
+
+/* Lista enlazada */
 #include "rsc/Lista.h"
 
 using namespace std;
 
+/* Verifica si el argumento pasado por
+ * parametro es un "auxiliar" o no */
 bool hasAuxiliar(char *nextArg){
     if(nextArg[0] != '-'){
         return 1;
     }
     return 0;
 }
-
+/* Lee los argumentos pasados en la ejecucion del codigo
+ * y devuelve un array de 5 enteros. cada entero en el array
+ * significa un argumento
+ * Los valores del array pueden ser los siguientes:
+ *      - -2: (solo aparece en la primera pocision) sifnifica que hubo un error
+ *          al pasar algun argumento en la ejecucion del comando
+ *
+ *      - -1: No se paso dicho argumento
+ *
+ *      - n>=0 Se paso el argumento con el valor indicado (n)*/
 int *readArguments(int argc, char **argv){
     int *myArguments = new int[5]{-1, -1, -1, -1, -1};
     for (int i = 1; i < argc; i++){
