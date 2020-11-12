@@ -70,7 +70,7 @@ g++ *.cpp *.h -o covid19
 <!-- Uso -->
 ## Uso
 
-Para usar el comando [Bash], simplemente escribe ./covid19 y elige alguno de los parametros indicados en la siguiente [Documentacion](https://docs.google.com/document/d/1CxsKLt2K9ZAEqB5bbsYQTNhIOhaODKXgXaw-z-IXA4k/edit?usp=sharing)_
+Para usar el comando [Bash], simplemente escribe ./covid19 y elige alguno de los parametros indicados en la siguiente [Documentacion](https://docs.google.com/document/d/1CxsKLt2K9ZAEqB5bbsYQTNhIOhaODKXgXaw-z-IXA4k/edit?usp=sharing)
 
 
 <!-- Contactanos -->
@@ -80,7 +80,7 @@ Gino Antonel - [Cuenta de github](https://github.com/GinoAntonel) - ginoantonel.
 
 Mateo Cetti - [Cuenta de github](https://github.com/MateoCetti) - mateocetti2000@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Link del proyecto: [https://github.com/MateoCetti/PIII-segundo-parcial](https://github.com/MateoCetti/PIII-segundo-parcial)
 
 
 

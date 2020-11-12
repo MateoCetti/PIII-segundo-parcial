@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool hasAuxiliar(char *nextArg){A
+bool hasAuxiliar(char *nextArg){
     if(nextArg[0] != '-'){
         return 1;
     }
