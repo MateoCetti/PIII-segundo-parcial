@@ -7,6 +7,7 @@
 
 /* Lista enlazada */
 #include "rsc/Lista.h"
+#include "rsc/Caso.h"
 
 using namespace std;
 
@@ -99,6 +100,8 @@ bool hasError(int *myArguments){
 
 void exploreCSV(){
 
+    int contador = 0;
+
     int interest[] = { 0, 2, 3, 12, 13, 14, 17, 20 };
 
     int nColumns = sizeof(interest) / sizeof(interest[0]);
@@ -114,16 +117,26 @@ void exploreCSV(){
 
     time_t start = time(NULL);
 
-    while (getline(fin, line)){
+    while (getline(fin, line) && contador < 2){
+        Caso casoP;
         casos+=1;
+        contador += 1;
         row.vaciar();
 
         stringstream s(line);
 
+        for (int x = 0; x < nColumns; x++)
+        {
+            getline(s, word, ',');
+            cout <<"| "<< row.getDato(interest[x]) << " | ";
+        }
+
         while (getline(s, word, ',')){
             if(word.size() > 0) word = word.substr(1, word.size()-2);
             else word = "NA";
-            row.insertarUltimo(word);
+
+            casoP.id = stoi(word);
+            //row.insertarUltimo(word);
         }
         /*
         for(int j=0; j<row.getTamanio(); j++){
@@ -150,12 +163,13 @@ void exploreCSV(){
 }
 
 int main(int argc, char **argv) {
+    Caso c1;
     int* myArguments = readArguments(argc, argv);
     if(hasError(myArguments)){
         cout<<"\n\nHubo un error en el pasaje de argumentos! \nPor favor ingrese los argumentos correctamente.\n\n\n";
     }
     else{
-        cout<<"Todo bien, sigue el proceso\n";
+        cout<<"** PROCESANDO DATOS **\n";
         /* TODO manage data */
         exploreCSV();
     }
