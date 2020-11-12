@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "string.h"
+#include "time.h"
 
 /* Lista enlazada */
 #include "rsc/Lista.h"
@@ -79,7 +80,6 @@ int *readArguments(int argc, char **argv){
             myArguments[0] = -2;
         }
     }
-    cout << "\n";
     return myArguments;
 }
 
@@ -97,8 +97,7 @@ bool hasError(int *myArguments){
 }
 
 
-void exploreCSV()
-{
+void exploreCSV(){
 
     int interest[] = { 0, 2, 3, 12, 13, 14, 17, 20 };
 
@@ -111,32 +110,34 @@ void exploreCSV()
 
     string line, word;
 
-    for (int i = 0; i < 4; i++)
-    {
+    time_t start = time(NULL);
+
+    while (getline(fin, line)){
         row.vaciar();
-        getline(fin, line);
 
         stringstream s(line);
 
-        while (getline(s, word, ','))
-        {
+        while (getline(s, word, ',')){
+            if(word.size() > 0) word = word.substr(1, word.size()-2);
+            else word = "NA";
             row.insertarUltimo(word);
         }
-
+        /*
         for(int j=0; j<row.getTamanio(); j++){
             cout<<row.getDato(j);
-        }
-        /*
-        if (row.getDato(20).compare("Confirmado") == 0)
-        {
+        }*/
+
+        if (row.getDato(20).compare("Confirmado") == 0){
             for (int j = 0; j < nColumns; j++)
             {
-                cout << row.getDato(interest[j]) << " ";
+                cout <<"| "<< row.getDato(interest[j]) << " | ";
             }
+            cout<<"\n";
         }
-        */
-        cout << "\n";
+
     }
+    time_t end = time(NULL);
+    cout<<"Se tarda "<<end-start<<" segundos en leer el archivo";
 }
 
 int main(int argc, char **argv) {
@@ -146,6 +147,8 @@ int main(int argc, char **argv) {
     }
     else{
         cout<<"Todo bien, sigue el proceso\n";
+        /* TODO manage data */
     }
+    exploreCSV();
     return 0;
 }
