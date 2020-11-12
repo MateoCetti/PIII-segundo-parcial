@@ -69,8 +69,23 @@ g++ *.cpp *.h -o covid19
 
 <!-- Uso -->
 ## Uso
+Para un correcto uso del comando, se deberán seguir las siguientes indicaciones. Primero, suponemos que el codigo ya esta correctamente compilado y este se llama “covid19”. Luego, podemos introducir por consola el siguiente comando, siempre y cuando estemos en el directorio del proyecto:
 
-Para usar el comando [Bash], simplemente escribe ./covid19 y elige alguno de los parametros indicados en la siguiente [Documentacion](https://docs.google.com/document/d/1CxsKLt2K9ZAEqB5bbsYQTNhIOhaODKXgXaw-z-IXA4k/edit?usp=sharing)
+```sh
+covid19 [argumentos]
+```
+
+Argumentos | Devuelve
+------------ | -------------
+-estad | Cantidad total de muestras,<br/> Cantidad total de infectados, Cantidad de fallecidos, <br/> % de infectado por muestras, % de fallecidos por infectados, <br/> Cantidad de infectados por rango etario ( rango de 10 años), <br/> Cantidad de muertes por rango etario ( rango de 10 años)
+-p_casos [n] | Mostrará las n primeras provincias con más contagios ordenadas de más a menos. Si n no es pasado, se mostrarán todas las provincias.
+-p_muertes [n] | Mostrará las n provincias con más muertes ordenadas de más a menos. Si n no es pasado, se mostrarán todas las provincias.
+-casos_edad[años] | Mostrará los datos de los casos donde la edad sea ‘años’ (ordenados por nombre de provincia).
+-casos_cui [fecha] | Mostrará los datos de los casos que estuvieron en cuidados intensivos ordenados por fecha de cuidados intensivos, si fecha está indicada, se mostrarán solo las fechas mayores a esta.
+***
+
+Si necesitas mas informacion podes leer nuesta 
+[Documentacion](https://docs.google.com/document/d/1CxsKLt2K9ZAEqB5bbsYQTNhIOhaODKXgXaw-z-IXA4k/edit?usp=sharing)
 
 
 <!-- Contactanos -->
