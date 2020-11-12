@@ -102,9 +102,7 @@ void exploreCSV(){
 
     int contador = 0;
 
-    int interest[] = { 0, 2, 3, 12, 13, 14, 17, 20 };
-
-    int nColumns = sizeof(interest) / sizeof(interest[0]);
+    //int interest[] = { 0, 2, 3, 12, 13, 14, 17, 20 };
 
     fstream fin;
     fin.open("./Covid19Casos.csv", ios::in);
@@ -116,28 +114,65 @@ void exploreCSV(){
     string line, word;
 
     time_t start = time(NULL);
-
-    while (getline(fin, line) && contador < 2){
+    getline(fin, line);
+    cout<<"-------------------------------------------------------\n";
+    while (getline(fin, line)){
         Caso casoP;
         casos+=1;
         contador += 1;
         row.vaciar();
 
         stringstream s(line);
-
-        for (int x = 0; x < nColumns; x++)
-        {
+        for (int j = 0; j < 25; j++){
             getline(s, word, ',');
-            cout <<"| "<< row.getDato(interest[x]) << " | ";
+            switch (j) {
+                case(0):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    else word = "0";
+                    casoP.id = stoi(word);
+                    break;
+                case(2):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    else word = "0";
+                    casoP.edad = stoi(word);
+                    break;
+                case(3):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    else word = "NA";
+                    casoP.edad_anios_meses=word;
+                    break;
+                case(12):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    else word = "NA";
+                    casoP.cuidado_intensivo=word;
+                    break;
+                case(13):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    else word = "NA";
+                    casoP.fecha_cui_intensivo=word;
+                    break;
+                case(14):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    else word = "NA";
+                    casoP.fallecido=word;
+                    break;
+                case(17):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    else word = "0";
+                    casoP.carga_provincia_id = stoi(word);
+                    break;
+                case(20):
+                    if(!word.empty()) word = word.substr(1, word.size()-2);
+                    casoP.clasificacion_resumen=word;
+                    break;
+            }
         }
 
-        while (getline(s, word, ',')){
+        /*while (getline(s, word, ',')){
             if(word.size() > 0) word = word.substr(1, word.size()-2);
             else word = "NA";
-
-            casoP.id = stoi(word);
-            //row.insertarUltimo(word);
-        }
+            row.insertarUltimo(word);
+        }*/
         /*
         for(int j=0; j<row.getTamanio(); j++){
             cout<<row.getDato(j);
@@ -150,13 +185,10 @@ void exploreCSV(){
             }
             cout<<"\n";
         }*/
-        for (int j = 0; j < nColumns; j++)
-        {
-            cout <<"| "<< row.getDato(interest[j]) << " | ";
-        }
-        cout<<"\n";
+        casoP.toString();
 
     }
+    cout<<"-------------------------------------------------------\n";
     time_t end = time(NULL);
     cout<<"Se tarda "<<end-start<<" segundos en leer el archivo\n";
     cout<<"hay: "<<casos<<" casos\n";
