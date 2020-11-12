@@ -71,19 +71,31 @@ int *readArguments(int argc, char **argv){
                 }
             }
             else{
-                cout<<"Ingrese un argumento valido.\n";
                 myArguments[0] = -2;
                 break;
             }
         }
         else{
-            cout<<"Ingrese un argumento valido.\n";
             myArguments[0] = -2;
         }
     }
     cout << "\n";
     return myArguments;
 }
+
+/* Verifica si error en el array de int de argumentos,
+ * o si todos son -1 */
+bool hasError(int *myArguments){
+    if(myArguments[0] == -2) return 1;
+    bool notEmpty = false;
+    for(int i=0;i<5; i++){
+        if(myArguments[i] != -1){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 
 void exploreCSV()
 {
@@ -129,9 +141,11 @@ void exploreCSV()
 
 int main(int argc, char **argv) {
     int* myArguments = readArguments(argc, argv);
-    for(int i = 0; i < 5; i++){
-        cout << " " << myArguments[i]<<"\n";
+    if(hasError(myArguments)){
+        cout<<"Hubo un error en el pasaje de argumentos! Por favor ingrese los argumentos correctamente.\n";
     }
-    //exploreCSV();
+    else{
+        cout<<"Todo bien, sigue el proceso\n";
+    }
     return 0;
 }
