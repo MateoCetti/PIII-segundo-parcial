@@ -1,4 +1,4 @@
-/* Imprimir en consola, leer archivos, procesar streams */
+/* Imprimir en consola - leer archivos - procesar streams - tiempo */
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -106,6 +106,8 @@ void exploreCSV(){
     fstream fin;
     fin.open("./Covid19Casos.csv", ios::in);
 
+    int casos = 0;
+
     Lista<string> row;
 
     string line, word;
@@ -113,6 +115,7 @@ void exploreCSV(){
     time_t start = time(NULL);
 
     while (getline(fin, line)){
+        casos+=1;
         row.vaciar();
 
         stringstream s(line);
@@ -127,28 +130,34 @@ void exploreCSV(){
             cout<<row.getDato(j);
         }*/
 
-        if (row.getDato(20).compare("Confirmado") == 0){
+        /*if (row.getDato(20).compare("Confirmado") == 0){
             for (int j = 0; j < nColumns; j++)
             {
                 cout <<"| "<< row.getDato(interest[j]) << " | ";
             }
             cout<<"\n";
+        }*/
+        for (int j = 0; j < nColumns; j++)
+        {
+            cout <<"| "<< row.getDato(interest[j]) << " | ";
         }
+        cout<<"\n";
 
     }
     time_t end = time(NULL);
-    cout<<"Se tarda "<<end-start<<" segundos en leer el archivo";
+    cout<<"Se tarda "<<end-start<<" segundos en leer el archivo\n";
+    cout<<"hay: "<<casos<<" casos\n";
 }
 
 int main(int argc, char **argv) {
     int* myArguments = readArguments(argc, argv);
     if(hasError(myArguments)){
-        cout<<"Hubo un error en el pasaje de argumentos! Por favor ingrese los argumentos correctamente.\n";
+        cout<<"\n\nHubo un error en el pasaje de argumentos! \nPor favor ingrese los argumentos correctamente.\n\n\n";
     }
     else{
         cout<<"Todo bien, sigue el proceso\n";
         /* TODO manage data */
+        exploreCSV();
     }
-    exploreCSV();
     return 0;
 }
