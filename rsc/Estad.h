@@ -12,6 +12,7 @@ private:
     double fallPorInfectados;
     int *infecRangoEtario;
     int *fallrangoEtario ;
+    int rangoEtario;
 public:
     Estad(){
         this->muestras = 0;
@@ -19,6 +20,7 @@ public:
         this->fallecidos = 0;
         this->infPorMuestras = 0;
         this->fallPorInfectados = 0;
+        this->rangoEtario=0;
     }
     void setMuestras(int m){
         this->muestras = m;
@@ -36,15 +38,16 @@ public:
         this->fallPorInfectados = fpi;
     }
     void setInfecRange(int *inf, int r){
-        std::cout<<"hola\n";
-        this->infecRangoEtario = new int[r]{};
-        for(int i=0; i<r; i++){
+        if(this->rangoEtario==0)this->rangoEtario=r;
+        this->infecRangoEtario = new int[rangoEtario]{};
+        for(int i=0; i<rangoEtario; i++){
             this->infecRangoEtario[i] = inf[i];
         }
     }
     void setFallRange(int *fall, int r){
-        this->fallrangoEtario = new int [r]{};
-        for(int i=0; i<r; i++){
+        if(this->rangoEtario==0)this->rangoEtario=r;
+        this->fallrangoEtario = new int [rangoEtario]{};
+        for(int i=0; i<rangoEtario; i++){
             this->fallrangoEtario[i] = fall[i];
         }
     }
@@ -55,6 +58,15 @@ public:
         <<"\nCantidad de fallecidos: "<<fallecidos
         <<"\nPorcentaje de infectados por muestras: "<<infPorMuestras
         <<"\nPorcentaje de fallecidos por infectados"<<fallPorInfectados<<"\n";
+        std::cout<<"Infectados por rango etario: ";
+        for (int i = 0; i<rangoEtario; i++){
+            std::cout<<infecRangoEtario[i]<<" ";
+        }
+        std::cout<<"\nFallecidos por rango etario: ";
+        for (int i = 0; i<rangoEtario; i++){
+            std::cout<<fallrangoEtario[i]<<" ";
+        }
+        std::cout<<"\n";
     }
 };
 
