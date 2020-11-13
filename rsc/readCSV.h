@@ -72,33 +72,45 @@ void fillCase(string word, int parsedWord, int j, Caso *casoP){
     }
 }
 
+int getCases(){
+    fstream fin;
+    string line;
+    fin.open("./Covid19Casos.csv", ios::in);
+    int casos = 0;
+    getline(fin, line);
+    while (getline(fin, line)){
+        casos+=1;
+    }
+    return casos;
+}
+
 void exploreCSV(){
+
+    time_t start = time(NULL);
+
+    int casos = getCases();
 
     fstream fin;
     fin.open("./Covid19Casos.csv", ios::in);
-
-    int casos = 0;
-
     string line, word;
-
-    time_t start = time(NULL);
+    Caso *misCasos = new Caso[casos];
     getline(fin, line);
+    int aux = 0;
     //cout<<"-------------------------------------------------------\n";
     while (getline(fin, line)){
-        Caso *casoP = new Caso;
-        casos+=1;
         /* para las fechas y los enteros */
         int parsedWord = 0;
         stringstream s(line);
         for (int j = 0; j <= 20; j++){
             getline(s, word, ',');
-            fillCase(word, parsedWord, j, casoP);
+            fillCase(word, parsedWord, j, &misCasos[aux]);
         }
-        //casoP->toString();
+        //misCasos[aux].toString();
+        aux+=1;
     }
     //cout<<"-------------------------------------------------------\n";
     time_t end = time(NULL);
-    cout<<"Se tarda "<<end-start<<" segundos en leer el archivo\n";
+    cout<<"Se tarda "<<end-start<<" segundos en leer y guardar el archivo\n";
     cout<<"hay: "<<casos<<" casos\n";
 }
 
