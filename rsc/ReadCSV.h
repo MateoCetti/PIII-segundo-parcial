@@ -139,14 +139,9 @@ void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
         estad->setInfPorMuestras(((double)infectados/casos)*100);
         //cout<<"hay: "<<((double)fallecidos/infectados)*100<<" % de fallecidos por infectados\n";
         estad->setFallporInfectados(((double)fallecidos/infectados)*100);
-        /*cout<<"Rango etario infectados:";
-        for(int i = 0; i<mayorEdad; i++){
-            cout<<" "<<infPorRango[i]<<" ";
-        }
-        cout<<"\n\nRango etario fallecidos:";
-        for(int i = 0; i<mayorEdad; i++){
-            cout<<" "<<fallPorRango[i]<<" ";
-        }*/
+        //cout<<"Rango etario infectados:";
+        estad->setInfecRange(infPorRango, mayorEdad);
+        estad->setFallRange(fallPorRango, mayorEdad);
     }
     //cout<<"-------------------------------------------------------\n";
     time_t end = time(NULL);

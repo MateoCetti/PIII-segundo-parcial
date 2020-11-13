@@ -11,7 +11,7 @@ private:
     double infPorMuestras;
     double fallPorInfectados;
     int *infecRangoEtario;
-    int *fallrangoEtario;
+    int *fallrangoEtario ;
 public:
     Estad(){
         this->muestras = 0;
@@ -35,22 +35,26 @@ public:
     void setFallporInfectados(double fpi){
         this->fallPorInfectados = fpi;
     }
-    void setInfecRangE(int *inf, int r){
-        this->infecRangoEtario[r] = {};
+    void setInfecRange(int *inf, int r){
+        std::cout<<"hola\n";
+        this->infecRangoEtario = new int[r]{};
         for(int i=0; i<r; i++){
             this->infecRangoEtario[i] = inf[i];
         }
     }
-    void setFallRangE(int *fall, int r){
-        this->fallrangoEtario[r] = {};
+    void setFallRange(int *fall, int r){
+        this->fallrangoEtario = new int [r]{};
         for(int i=0; i<r; i++){
             this->fallrangoEtario[i] = fall[i];
         }
     }
 
     void toString(){
-        std::cout<<"\n"<<muestras<<"\n"<<infectados<<"\n"<<fallecidos<<"\n"<<
-        infPorMuestras<<"\n"<<fallPorInfectados<<"\n";
+        std::cout<<"\nCantidad de muestras: "<<muestras
+        <<"\nCantidad de infectados: "<<infectados
+        <<"\nCantidad de fallecidos: "<<fallecidos
+        <<"\nPorcentaje de infectados por muestras: "<<infPorMuestras
+        <<"\nPorcentaje de fallecidos por infectados"<<fallPorInfectados<<"\n";
     }
 };
 
