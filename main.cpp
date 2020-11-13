@@ -9,7 +9,6 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    Caso c1;
     int* myArguments = readArguments(argc, argv);
     if(hasError(myArguments)){
         cout<<"\n\nHubo un error en el pasaje de argumentos! \n"
@@ -20,7 +19,7 @@ int main(int argc, char **argv) {
         /* TODO manage data */
         int casos = getCases();
         Caso *misCasos = new Caso[casos];
-        Estad *estad;
+        Estad *estad = new Estad;
         exploreCSV(myArguments[0], estad, misCasos, casos);
         estad->toString();
     }

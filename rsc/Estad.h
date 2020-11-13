@@ -57,7 +57,7 @@ public:
         <<"\nCantidad de infectados: "<<infectados
         <<"\nCantidad de fallecidos: "<<fallecidos
         <<"\nPorcentaje de infectados por muestras: "<<infPorMuestras
-        <<"\nPorcentaje de fallecidos por infectados"<<fallPorInfectados<<"\n";
+        <<"\nPorcentaje de fallecidos por infectados: "<<fallPorInfectados<<"\n";
         std::cout<<"Infectados por rango etario: ";
         for (int i = 0; i<rangoEtario; i++){
             std::cout<<infecRangoEtario[i]<<" ";

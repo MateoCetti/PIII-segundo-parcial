@@ -6,7 +6,7 @@
 #include <sstream>
 #include "cstring"
 #include "ctime"
-#include "math.h"
+#include "cmath"
 
 #include "Caso.h"
 #include "Estad.h"
@@ -86,8 +86,19 @@ int getCases(){
     return casos;
 }
 
-void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
+void fillEstad(Estad *estad, int casos, int infectados,
+               int fallecidos, int rangoEtario,
+               int *infPorRango, int *fallPorRango){
+    estad->setMuestras(casos);
+    estad->setInfectados(infectados);
+    estad->setFallecidos(fallecidos);
+    estad->setInfPorMuestras(((double)infectados/casos)*100);
+    estad->setFallporInfectados(((double)fallecidos/infectados)*100);
+    estad->setInfecRange(infPorRango, rangoEtario);
+    estad->setFallRange(fallPorRango, rangoEtario);
+}
 
+void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
     time_t start = time(NULL);
 
     fstream fin;
@@ -100,16 +111,17 @@ void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
     int fallecidos = 0;
     int mayorEdad = 0;
     int aux = 0;
-    //cout<<"-------------------------------------------------------\n";
+
     while (getline(fin, line)){
         /* para las fechas y los enteros */
         int parsedWord = 0;
         stringstream s(line);
+
         for (int j = 0; j <= 20; j++){
             getline(s, word, ',');
             fillCase(word, parsedWord, j, &misCasos[aux]);
         }
-        //misCasos[aux].toString();
+
         if(doEstad != -1){
             if(misCasos[aux].getFallecido().compare("SI") == 0) fallecidos+=1;
             if(misCasos[aux].getClasifResumen().compare("Confirmado") == 0) infectados+=1;
@@ -117,35 +129,27 @@ void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
         }
         aux+=1;
     }
+
     if(doEstad != -1){
         mayorEdad = ceil((double)mayorEdad/10);
         int infPorRango[mayorEdad] = {};
         int fallPorRango[mayorEdad] = {};
+
         for(int i = 0; i< casos; i++){
+
             if(misCasos[i].getClasifResumen().compare("Confirmado") == 0){
                 infPorRango[misCasos[i].getEdad()/10]+=1;
             }
+
             if(misCasos[i].getFallecido().compare("SI") == 0){
                 fallPorRango[misCasos[i].getEdad()/10]+=1;
             }
         }
-        //cout<<"hay: "<<casos<<" muestras\n";
-        estad->setMuestras(casos);
-        //cout<<"hay: "<<infectados<<" infectados\n";
-        estad->setInfectados(infectados);
-        //cout<<"hay: "<<fallecidos<<" fallecidos\n";
-        estad->setFallecidos(fallecidos);
-        //cout<<"hay: "<<((double)infectados/casos)*100<<" % de infectados por muestras\n";
-        estad->setInfPorMuestras(((double)infectados/casos)*100);
-        //cout<<"hay: "<<((double)fallecidos/infectados)*100<<" % de fallecidos por infectados\n";
-        estad->setFallporInfectados(((double)fallecidos/infectados)*100);
-        //cout<<"Rango etario infectados:";
-        estad->setInfecRange(infPorRango, mayorEdad);
-        estad->setFallRange(fallPorRango, mayorEdad);
+        fillEstad(estad, casos, infectados, fallecidos, mayorEdad, infPorRango, fallPorRango);
+        //estad->toString();
     }
-    //cout<<"-------------------------------------------------------\n";
     time_t end = time(NULL);
-    cout<<"\nSe tarda "<<end-start<<" segundos en leer y guardar el archivo\n\n";
+    cout<<"\nSegundos de lectura y guardado del csv: "<<end-start<<" \n\n";
 
 }
 
