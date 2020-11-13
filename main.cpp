@@ -4,7 +4,7 @@
 
 #include "rsc/Caso.h"
 #include "rsc/ArgumentsManagement.h"
-#include "rsc/readCSV.h"
+#include "rsc/ReadCSV.h"
 
 using namespace std;
 
@@ -18,7 +18,11 @@ int main(int argc, char **argv) {
     else{
         cout<<"\n\n** PROCESANDO DATOS **\n\n";
         /* TODO manage data */
-        exploreCSV();
+        int casos = getCases();
+        Caso *misCasos = new Caso[casos];
+        Estad *estad;
+        exploreCSV(myArguments[0], estad, misCasos, casos);
+        misCasos[1].toString();
     }
     return 0;
 }

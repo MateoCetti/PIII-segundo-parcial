@@ -7,7 +7,7 @@
  * @tparam T cualquier tipo de dato
  */
 
-#include "nodo.h"
+#include "Nodo.h"
 #include "iostream"
 template <class T> class Lista {
 private:
