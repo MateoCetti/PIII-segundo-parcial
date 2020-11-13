@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
         Caso *misCasos = new Caso[casos];
         Estad *estad;
         exploreCSV(myArguments[0], estad, misCasos, casos);
-        misCasos[1].toString();
+        estad->toString();
     }
     return 0;
 }
