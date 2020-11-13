@@ -6,6 +6,7 @@
 #include <sstream>
 #include "cstring"
 #include "ctime"
+#include "math.h"
 
 #include "Caso.h"
 
@@ -95,6 +96,10 @@ void exploreCSV(){
     string line, word;
     Caso *misCasos = new Caso[casos];
     getline(fin, line);
+
+    int infectados = 0;
+    int fallecidos = 0;
+    int mayorEdad = 0;
     int aux = 0;
     //cout<<"-------------------------------------------------------\n";
     while (getline(fin, line)){
@@ -106,12 +111,38 @@ void exploreCSV(){
             fillCase(word, parsedWord, j, &misCasos[aux]);
         }
         //misCasos[aux].toString();
+        if(misCasos[aux].getFallecido().compare("SI") == 0) fallecidos+=1;
+        if(misCasos[aux].getClasifResumen().compare("Confirmado") == 0) infectados+=1;
+        if(misCasos[aux].getEdad() > mayorEdad && misCasos[aux].getEdad()<200) mayorEdad = misCasos[aux].getEdad();
         aux+=1;
+    }
+    mayorEdad = ceil((double)mayorEdad/10);
+    int infPorRango[mayorEdad] = {};
+    int fallPorRango[mayorEdad] = {};
+    for(int i = 0; i< casos; i++){
+        if(misCasos[i].getClasifResumen().compare("Confirmado") == 0){
+            infPorRango[misCasos[i].getEdad()/10]+=1;
+        }
+        if(misCasos[i].getFallecido().compare("SI") == 0){
+            fallPorRango[misCasos[i].getEdad()/10]+=1;
+        }
     }
     //cout<<"-------------------------------------------------------\n";
     time_t end = time(NULL);
-    cout<<"Se tarda "<<end-start<<" segundos en leer y guardar el archivo\n";
-    cout<<"hay: "<<casos<<" casos\n";
+    cout<<"\nSe tarda "<<end-start<<" segundos en leer y guardar el archivo\n\n";
+    cout<<"hay: "<<casos<<" muestras\n";
+    cout<<"hay: "<<infectados<<" infectados\n";
+    cout<<"hay: "<<fallecidos<<" fallecidos\n";
+    cout<<"hay: "<<((double)infectados/casos)*100<<" % de infectados\n";
+    cout<<"hay: "<<((double)fallecidos/casos)*100<<" % de fallecidos\n";
+    cout<<"Rango etario infectados:";
+    for(int i = 0; i<mayorEdad; i++){
+        cout<<" "<<infPorRango[i]<<" ";
+    }
+    cout<<"\n\nRango etario fallecidos:";
+    for(int i = 0; i<mayorEdad; i++){
+        cout<<" "<<fallPorRango[i]<<" ";
+    }
 }
 
 #endif //INC_2_PARCIAL_READCSV_H

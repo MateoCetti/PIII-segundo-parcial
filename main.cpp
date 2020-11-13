@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
               "Por favor ingrese los argumentos correctamente.\n\n\n";
     }
     else{
-        cout<<"** PROCESANDO DATOS **\n";
+        cout<<"\n\n** PROCESANDO DATOS **\n\n";
         /* TODO manage data */
         exploreCSV();
     }

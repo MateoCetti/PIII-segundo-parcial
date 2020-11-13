@@ -1,7 +1,6 @@
 #ifndef INC_2_PARCIAL_ARGUMENTSMANAGEMENT_H
 #define INC_2_PARCIAL_ARGUMENTSMANAGEMENT_H
 
-
 /* Verifica si el argumento pasado por
  * parametro es un "auxiliar" o no */
 bool hasAuxiliar(char *nextArg){
@@ -10,7 +9,6 @@ bool hasAuxiliar(char *nextArg){
     }
     return 0;
 }
-
 
 /* Lee los argumentos pasados en la ejecucion del codigo
  * y devuelve un array de 5 enteros. cada entero en el array
