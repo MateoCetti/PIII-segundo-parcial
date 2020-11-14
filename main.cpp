@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
         15.Río Negro 16.Salta 17.San Juan 18.San Luis 19.Santa Cruz 20.Santa Fe
         21.Santiago del Estero 22.Tierra del Fuego 23.Tucumán*/
         if(myArguments[1] != -1){
-            cout<<"\n\n** Mostrando casos por provincia **\n\n";
+            cout<<"\n\n** Mostrando Contagios por provincia **\n\n";
             string provincias[24] = {
                     "Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes",
                     "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones",
@@ -62,8 +62,11 @@ int main(int argc, char **argv) {
             }
             for (int i = 0; i<casos; i++){
                 for(int j=0;j<24;j++){
-                    if(misCasos[i].getProvincia().compare(provincias[j])==0){
-                        misProvincias[j].IncrementCounter();
+                    if(misCasos[i].getClasifResumen().compare("Confirmado")==0){
+                        if(misCasos[i].getProvincia().compare(provincias[j])==0){
+                            misProvincias[j].IncrementCounter();
+                            break;
+                        }
                     }
                 }
             }
