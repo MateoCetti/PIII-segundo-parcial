@@ -52,7 +52,7 @@ void casosEdad(Caso *misCasos, int casos, int edad){
 		}
 		casosPorEdad[j] = casosAux.pop();
 	}
-	quickSortEdad(casosPorEdad, 0, contador);
+	quickSortEdad(casosPorEdad, 0, contador-1);
 	for (int i = 0; i < contador; i++){
 		casosPorEdad[i].toString();
 	}
