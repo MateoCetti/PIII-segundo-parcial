@@ -8,8 +8,31 @@
 
 using namespace std;
 
+void quickSortEdad(Caso *arr, int first, int last){
+    int i, j, middle;
+    Caso pivot, aux;
+
+    middle = (first+last)/2;
+    pivot = arr[middle];
+    i=first;
+    j=last;
+
+    do{
+        while(arr[i].getProvincia()<pivot.getProvincia())i++;
+        while(arr[j].getProvincia()>pivot.getProvincia())j--;
+        if(i<=j){
+            aux= arr[i];
+            arr[i]=arr[j];
+            arr[j]= aux;
+            i++;
+            j--;
+        }
+    }while(i<=j);
+    if(j>first) quickSortEdad(arr, first, j);
+    if(i< last) quickSortEdad(arr, i, last);
+}
+
 void casosEdad(Caso *misCasos, int casos, int edad){
-	Caso *casosPorEdad;
 	Pila<Caso> casosAux;
 	int contador = 0;
 	for (int i = 0; i < casos; i++){
@@ -20,12 +43,19 @@ void casosEdad(Caso *misCasos, int casos, int edad){
 			}
 		}
 	}
-	casosPorEdad = new Caso[contador];
+	Caso *casosPorEdad = new Caso[contador];
 	for (int j = 0; j < contador; j++){
+		if(casosAux.peek().getProvincia().compare("Córdoba") == 0){
+			Caso aux = casosAux.pop();
+			aux.setProvincia("Cordoba");
+			casosAux.push(aux);
+		}
 		casosPorEdad[j] = casosAux.pop();
 	}
+	quickSortEdad(casosPorEdad, 0, contador);
 	for (int i = 0; i < contador; i++){
 		casosPorEdad[i].toString();
 	}
 }
+
 #endif //INC_2_PARCIAL_CASOSEDAD_H
