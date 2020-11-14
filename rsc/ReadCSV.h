@@ -99,7 +99,7 @@ void fillEstad(Estad *estad, int casos, int infectados,
     estad->setFallRange(fallPorRango, rangoEtario);
 }
 
-void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
+void exploreCSV(int doEstad, Caso *misCasos, int casos){
     time_t start = time(NULL);
 
     fstream fin;
@@ -132,6 +132,7 @@ void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
     }
 
     if(doEstad != -1){
+        Estad *estad = new Estad;
         cout<<"** Mostrando datos estadisticos **\n";
         mayorEdad = ceil((double)mayorEdad/10);
         int infPorRango[mayorEdad] = {};

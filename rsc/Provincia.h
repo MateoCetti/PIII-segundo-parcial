@@ -6,7 +6,7 @@
 class Provincia{
 private:
     string name;
-    int counter;
+    int counter; // infectados y muertes
 public:
     Provincia(){
         this->name="";

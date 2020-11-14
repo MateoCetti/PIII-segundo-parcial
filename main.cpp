@@ -20,8 +20,7 @@ int main(int argc, char **argv) {
         int casos = getCases();
         Caso *misCasos = new Caso[casos];
 
-        Estad *estad = new Estad;
-        exploreCSV(myArguments[0], estad, misCasos, casos);
+        exploreCSV(myArguments[0], misCasos, casos);
 
         if(myArguments[1] != -1){
             cout<<"\n\n** Mostrando contagios por provincia **\n\n";
