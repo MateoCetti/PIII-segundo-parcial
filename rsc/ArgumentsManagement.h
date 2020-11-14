@@ -5,9 +5,9 @@
  * parametro es un "auxiliar" o no */
 bool hasAuxiliar(char *nextArg){
     if(nextArg[0] != '-'){
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
 /* Lee los argumentos pasados en la ejecucion del codigo
@@ -23,36 +23,32 @@ int *readArguments(int argc, char **argv){
                 myArguments[0] = 0;
             }
             else if(strcmp(argv[i], "-p_casos")  == 0) {
-                if(i < argc-1){
-                    bool x = hasAuxiliar(argv[i+1]);
-                    i+=x;
+                if(i < argc-1 && hasAuxiliar(argv[i+1])){
+                    i+=1;
                     myArguments[1] = stoi(argv[i]);
                 }else{
                     myArguments[1] = 0;
                 }
             }
             else if(strcmp(argv[i], "-p_muertes")  == 0) {
-                if(i < argc-1){
-                    bool x = hasAuxiliar(argv[i+1]);
-                    i+=x;
+                if(i < argc-1 && hasAuxiliar(argv[i+1])){
+                    i+=1;
                     myArguments[2] = stoi(argv[i]);
                 }else{
                     myArguments[2] = 0;
                 }
             }
             else if(strcmp(argv[i], "-casos_edad")  == 0) {
-                if(i < argc-1){
-                    bool x = hasAuxiliar(argv[i+1]);
-                    i+=x;
+                if(i < argc-1 && hasAuxiliar(argv[i+1])){
+                    i+=1;
                     myArguments[3] = stoi(argv[i]);
                 }else{
                     myArguments[3] = 0;
                 }
             }
             else if(strcmp(argv[i], "-casos_cui")  == 0) {
-                if(i < argc-1){
-                    bool x = hasAuxiliar(argv[i+1]);
-                    i+=x;
+                if(i < argc-1 && hasAuxiliar(argv[i+1])){
+                    i+=1;
                     myArguments[4] = stoi(argv[i]);
                 }else{
                     myArguments[4] = 0;
@@ -66,6 +62,7 @@ int *readArguments(int argc, char **argv){
         else{
             myArguments[0] = -2;
         }
+        cout << myArguments[i-1]<<endl;
     }
     return myArguments;
 }
