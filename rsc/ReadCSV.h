@@ -141,11 +141,19 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos){
         for(int i = 0; i< casos; i++){
 
             if(misCasos[i].getClasifResumen().compare("Confirmado") == 0){
-                infPorRango[misCasos[i].getEdad()/10]+=1;
+                if(misCasos[i].getEdadAniosMeses().compare("Meses") == 0){
+                    infPorRango[0]+=1;
+                }else{
+                    infPorRango[misCasos[i].getEdad()/10]+=1;
+                }
             }
 
             if(misCasos[i].getFallecido().compare("SI") == 0){
-                fallPorRango[misCasos[i].getEdad()/10]+=1;
+                if(misCasos[i].getEdadAniosMeses().compare("Meses") == 0){
+                    fallPorRango[0]+=1;
+                }else{
+                    fallPorRango[misCasos[i].getEdad()/10]+=1;
+                }
             }
         }
         fillEstad(estad, casos, infectados, fallecidos, mayorEdad, infPorRango, fallPorRango);
