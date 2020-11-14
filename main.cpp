@@ -5,12 +5,12 @@
 #include "rsc/Caso.h"
 #include "rsc/ArgumentsManagement.h"
 #include "rsc/ReadCSV.h"
-
+#include "rsc/Provincia.h"
 using namespace std;
 
-void quickSort(int *arr, int first, int last){
+void quickSort(Provincia *arr, int first, int last){
     int i, j, middle;
-    int pivot, aux;
+    Provincia pivot, aux;
 
     middle = (first+last)/2;
     pivot = arr[middle];
@@ -18,8 +18,8 @@ void quickSort(int *arr, int first, int last){
     j=last;
 
     do{
-        while(arr[i]>pivot)i++;
-        while(arr[j]<pivot)j--;
+        while(arr[i].getCounter()>pivot.getCounter())i++;
+        while(arr[j].getCounter()<pivot.getCounter())j--;
         if(i<=j){
             aux= arr[i];
             arr[i]=arr[j];
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
               "Por favor ingrese los argumentos correctamente.\n\n\n";
     }
     else{
-        cout<<"\n\n** PROCESANDO DATOS **\n\n";
+        cout<<"\n\n** Procesando datos **\n\n";
         /* TODO manage data */
         int casos = getCases();
         Caso *misCasos = new Caso[casos];
@@ -50,24 +50,27 @@ int main(int argc, char **argv) {
         15.Río Negro 16.Salta 17.San Juan 18.San Luis 19.Santa Cruz 20.Santa Fe
         21.Santiago del Estero 22.Tierra del Fuego 23.Tucumán*/
         if(myArguments[1] != -1){
+            cout<<"\n\n** Mostrando casos por provincia **\n\n";
             string provincias[24] = {
                     "Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes",
                     "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones",
                     "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe",
                     "Santiago del Estero", "Tierra del Fuego", "Tucumán"};
-            int misProvincias[24] = {};
-            if(myArguments[1] == 0){
-                for (int i = 0; i<casos; i++){
-                    for(int j=0;j<24;j++){
-                        if(misCasos[i].getProvincia().compare(provincias[j])==0){
-                            misProvincias[j]+=1;
-                        }
+            Provincia misProvincias[24];
+            for(int i=0; i<24;i++){
+                misProvincias[i].setName(provincias[i]);
+            }
+            for (int i = 0; i<casos; i++){
+                for(int j=0;j<24;j++){
+                    if(misCasos[i].getProvincia().compare(provincias[j])==0){
+                        misProvincias[j].IncrementCounter();
                     }
                 }
             }
+            int n = myArguments[1] == 0 ? 24 : myArguments[1];
             quickSort(misProvincias, 0,23);
-            for(int i=0; i<24; i++){
-                cout<<misProvincias[i]<<"\n";
+            for(int i=0; i<n; i++){
+                misProvincias[i].toString();
             }
         }
     }

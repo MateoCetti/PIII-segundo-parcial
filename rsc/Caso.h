@@ -1,6 +1,6 @@
 #ifndef INC_2_PARCIAL_CASO_H
 #define INC_2_PARCIAL_CASO_H
-#include "string.h"
+#include "cstring"
 
 using namespace std;
 

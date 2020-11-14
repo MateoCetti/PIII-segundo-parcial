@@ -132,6 +132,7 @@ void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
     }
 
     if(doEstad != -1){
+        cout<<"** Mostrando datos estadisticos **\n";
         mayorEdad = ceil((double)mayorEdad/10);
         int infPorRango[mayorEdad] = {};
         int fallPorRango[mayorEdad] = {};
@@ -150,7 +151,7 @@ void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
         estad->toString();
     }
     time_t end = time(NULL);
-    cout<<"\nSegundos de lectura y guardado del csv: "<<end-start<<" \n\n";
+    //cout<<"\nSegundos de lectura y guardado del csv: "<<end-start<<" \n\n";
 
 }
 
