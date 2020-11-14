@@ -45,12 +45,11 @@ void fillCase(string word, int parsedWord, int j, Caso *casoP){
             word = parseToString(word);
             casoP->setEdadAñosMeses(word);
             break;
-            /*case(7): printear la provincia
-                if(!word.empty()) word = word.substr(1, word.size()-2);
-                else word = "NA";
-                cout<<"\n"<<word<<"\n";
-                break;
-            */
+        case(7): //printear la provincia
+            if(!word.empty()) word = word.substr(1, word.size()-2);
+            else word = "NA";
+            casoP->setProvincia(word);
+            break;
         case(12):
             word = parseToString(word);
             casoP->setCuiIntensivo(word);
@@ -63,10 +62,12 @@ void fillCase(string word, int parsedWord, int j, Caso *casoP){
             word = parseToString(word);
             casoP->setFallecido(word);
             break;
-        case(17):
+        /*case(17):
             parsedWord = parseToInt(word);
             casoP->setProvinciaID(parsedWord);
+            cout<<"\n"<<word;
             break;
+        */
         case(20):
             word = parseToString(word);
             casoP->setClasifResumen(word);
@@ -146,7 +147,7 @@ void exploreCSV(int doEstad, Estad *estad, Caso *misCasos, int casos){
             }
         }
         fillEstad(estad, casos, infectados, fallecidos, mayorEdad, infPorRango, fallPorRango);
-        //estad->toString();
+        estad->toString();
     }
     time_t end = time(NULL);
     cout<<"\nSegundos de lectura y guardado del csv: "<<end-start<<" \n\n";

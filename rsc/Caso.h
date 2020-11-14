@@ -12,7 +12,7 @@ private:
 		string cuidado_intensivo;
 		int fecha_cui_intensivo;
 		string fallecido;
-		int carga_provincia_id;
+		string provincia;
 		string clasificacion_resumen;
 public:
 		Caso(){
@@ -22,7 +22,7 @@ public:
 			this->cuidado_intensivo = "";
 			this->fecha_cui_intensivo = 0;
 			this->fallecido = "";
-			this->carga_provincia_id = 0;
+			this->provincia = "";
 			this->clasificacion_resumen = "";
 		};
 		void setID(int id){
@@ -43,8 +43,8 @@ public:
         void setFallecido(string fa){
                 this->fallecido = fa;
         }
-        void setProvinciaID(int id){
-                this->carga_provincia_id = id;
+        void setProvincia(string p){
+                this->provincia = p;
         }
         void setClasifResumen(string cr){
                 this->clasificacion_resumen = cr;
@@ -67,15 +67,15 @@ public:
         string getFallecido(){
 		    return this->fallecido;
         }
-        int getProvinciaID(){
-		    return this->carga_provincia_id;
+        string getProvincia(){
+		    return this->provincia;
         }
         string getClasifResumen(){
 		    return this->clasificacion_resumen;
         }
         void toString(){
 		    cout<<"| "<<this->id <<" | "<<this->edad <<" | "<<this->edad_anios_meses <<" | "<<this->cuidado_intensivo
-		    <<" | "<<this->fecha_cui_intensivo <<" | "<<this->fallecido <<" | "<<this->carga_provincia_id <<" | "
+		    <<" | "<<this->fecha_cui_intensivo <<" | "<<this->fallecido <<" | "<<this->provincia <<" | "
 		    <<this->clasificacion_resumen <<" | \n";
 		};
 };

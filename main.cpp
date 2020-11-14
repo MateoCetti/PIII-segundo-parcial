@@ -8,6 +8,30 @@
 
 using namespace std;
 
+void quickSort(int *arr, int first, int last){
+    int i, j, middle;
+    int pivot, aux;
+
+    middle = (first+last)/2;
+    pivot = arr[middle];
+    i=first;
+    j=last;
+
+    do{
+        while(arr[i]>pivot)i++;
+        while(arr[j]<pivot)j--;
+        if(i<=j){
+            aux= arr[i];
+            arr[i]=arr[j];
+            arr[j]= aux;
+            i++;
+            j--;
+        }
+    }while(i<=j);
+    if(j>first) quickSort(arr, first, j);
+    if(i< last) quickSort(arr, i, last);
+}
+
 int main(int argc, char **argv) {
     int* myArguments = readArguments(argc, argv);
     if(hasError(myArguments)){
@@ -21,7 +45,31 @@ int main(int argc, char **argv) {
         Caso *misCasos = new Caso[casos];
         Estad *estad = new Estad;
         exploreCSV(myArguments[0], estad, misCasos, casos);
-        estad->toString();
+        /* 0.Buenos Aires 1.CABA 2.Catamarca 3.Chaco 4.Chubut 5.Córdoba 6.Corrientes 7.Entre Ríos
+        8.Formosa 9.Jujuy 10.La Pampa 11.La Rioja 12.Mendoza 13.Misiones 14. Neuquén
+        15.Río Negro 16.Salta 17.San Juan 18.San Luis 19.Santa Cruz 20.Santa Fe
+        21.Santiago del Estero 22.Tierra del Fuego 23.Tucumán*/
+        if(myArguments[1] != -1){
+            string provincias[24] = {
+                    "Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes",
+                    "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones",
+                    "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe",
+                    "Santiago del Estero", "Tierra del Fuego", "Tucumán"};
+            int misProvincias[24] = {};
+            if(myArguments[1] == 0){
+                for (int i = 0; i<casos; i++){
+                    for(int j=0;j<24;j++){
+                        if(misCasos[i].getProvincia().compare(provincias[j])==0){
+                            misProvincias[j]+=1;
+                        }
+                    }
+                }
+            }
+            quickSort(misProvincias, 0,23);
+            for(int i=0; i<24; i++){
+                cout<<misProvincias[i]<<"\n";
+            }
+        }
     }
     return 0;
 }
