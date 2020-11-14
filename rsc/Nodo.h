@@ -1,12 +1,8 @@
-//
-// Created by root on 19/8/20.
-//
-
-#ifndef PROGRAMACION3_NODO_H
-#define PROGRAMACION3_NODO_H
+#ifndef INC_2_PARCIAL_NODO_H
+#define INC_2_PARCIAL_NODO_H
 
 template <class T>
-class Node {
+class Node{
 private:
   T dato;
   Node<T> *siguiente;
@@ -26,4 +22,4 @@ public:
   };
 };
 
-#endif // PROGRAMACION3_NODO_H
+#endif // INC_2_PARCIAL_NODO_H

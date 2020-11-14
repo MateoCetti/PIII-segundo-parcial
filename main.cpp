@@ -6,6 +6,8 @@
 #include "rsc/ArgumentsManagement.h"
 #include "rsc/ReadCSV.h"
 #include "rsc/p_casos_muertes.h"
+#include "rsc/CasosEdad.h"
+
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -35,6 +37,11 @@ int main(int argc, char **argv) {
             p_casos_muertes(misProvincias, misCasos, casos, 'f');
             int n = myArguments[2] == 0 ? 24 : myArguments[2];
             printP(misProvincias, n);
+        }
+        if(myArguments[3] != -1){
+            cout<<"\n\n** Mostrando casos por la edad ingresada **\n\n";
+            int edad = myArguments[3];
+            casosEdad(misCasos, casos, edad);
         }
     }
     return 0;
