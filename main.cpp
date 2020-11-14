@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
             cout<<"\n\n** Mostrando fallecidos por provincia **\n\n";
             Provincia misProvincias[24];
             p_casos_muertes(misProvincias, misCasos, casos, 'f');
-            int n = myArguments[2] == 0 ? 24 : myArguments[1];
+            int n = myArguments[2] == 0 ? 24 : myArguments[2];
             printP(misProvincias, n);
         }
     }
