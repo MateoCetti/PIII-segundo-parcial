@@ -70,6 +70,9 @@ int *readArguments(int argc, char **argv){
  * o si todos son -1 */
 bool hasError(int *myArguments){
     if(myArguments[0] == -2) return true;
+    if(myArguments[1]>24 || myArguments[2]>24){
+        return true;
+    }
     bool notEmpty = false;
     for(int i=0;i<5; i++){
         if(myArguments[i] != -1){
