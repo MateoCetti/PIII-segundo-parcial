@@ -62,7 +62,6 @@ int *readArguments(int argc, char **argv){
         else{
             myArguments[0] = -2;
         }
-        cout << myArguments[i-1]<<endl;
     }
     return myArguments;
 }
