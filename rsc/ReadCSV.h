@@ -10,6 +10,7 @@
 
 #include "Caso.h"
 #include "Estad.h"
+#include "Provincia.h"
 
 int parseToDate(string word){
     if(word.empty()) return 0;
@@ -45,9 +46,8 @@ void fillCase(string word, int parsedWord, int j, Caso *casoP){
             word = parseToString(word);
             casoP->setEdadAniosMeses(word);
             break;
-        case(7): //printear la provincia
-            if(!word.empty()) word = word.substr(1, word.size()-2);
-            else word = "NA";
+        case(7):
+            word = parseToString(word);
             casoP->setProvincia(word);
             break;
         case(12):
@@ -64,10 +64,8 @@ void fillCase(string word, int parsedWord, int j, Caso *casoP){
             break;
         /*case(17):
             parsedWord = parseToInt(word);
-            casoP->setProvinciaID(parsedWord);
-            cout<<"\n"<<word;
-            break;
-        */
+            casoP->setProvincia(parsedWord);
+            break;*/
         case(20):
             word = parseToString(word);
             casoP->setClasifResumen(word);
@@ -99,12 +97,22 @@ void fillEstad(Estad *estad, int casos, int infectados,
     estad->setFallRange(fallPorRango, rangoEtario);
 }
 
-void exploreCSV(int doEstad, Caso *misCasos, int casos){
-    time_t start = time(NULL);
+void exploreCSV(int doEstad, int doPCases, int doPDeaths, Caso *misCasos, int casos){
+        time_t start = time(NULL);
 
     fstream fin;
     fin.open("./Covid19Casos.csv", ios::in);
     string line, word;
+
+    string provincias[24] = {
+            "Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes",
+            "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones",
+            "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe",
+            "Santiago del Estero", "Tierra del Fuego", "Tucumán"};
+    Provincia misProvincias[24];
+    for(int i=0; i<24;i++){
+        misProvincias[i].setName(provincias[i]);
+    }
 
     getline(fin, line);
 
@@ -122,11 +130,20 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos){
             getline(s, word, ',');
             fillCase(word, parsedWord, j, &misCasos[aux]);
         }
-
         if(doEstad != -1){
-            if(misCasos[aux].getFallecido().compare("SI") == 0) fallecidos+=1;
-            if(misCasos[aux].getClasifResumen().compare("Confirmado") == 0) infectados+=1;
+            if(misCasos[aux].getFallecido().compare("SI") == 0)fallecidos+=1;
+            if(misCasos[aux].getClasifResumen().compare("Confirmado") == 0)infectados+=1;
             if(misCasos[aux].getEdad() > mayorEdad && misCasos[aux].getEdad()<200) mayorEdad = misCasos[aux].getEdad();
+        }
+        if(doPDeaths != -1){
+            for(int i=0; i<24; i++){
+                if(misCasos[aux].getProvincia().compare(misProvincias[i].getName()))misProvincias[i].IncrementDead();
+            }
+        }
+        if(doPCases != -1){
+            for(int i=0; i<24; i++){
+                if(misCasos[aux].getProvincia().compare(misProvincias[i].getName()))misProvincias[i].IncrementInfected();
+            }
         }
         aux+=1;
     }
@@ -161,7 +178,17 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos){
     }
     time_t end = time(NULL);
     //cout<<"\nSegundos de lectura y guardado del csv: "<<end-start<<" \n\n";
-
+    cout<<"\n\n\n";
+    if(doPCases != -1){
+        for(int i=0;i<24;i++){
+            misProvincias[i].printInfected();
+        }
+    }
+    if(doPDeaths != -1){
+        for(int i=0;i<24;i++){
+            misProvincias[i].printDead();
+        }
+    }
 }
 
 #endif //INC_2_PARCIAL_READCSV_H

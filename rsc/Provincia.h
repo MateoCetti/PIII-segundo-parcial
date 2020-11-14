@@ -5,12 +5,15 @@
 
 class Provincia{
 private:
+    int ID;
     string name;
-    int counter; // infectados y muertes
+    int infected;
+    int dead;
 public:
     Provincia(){
         this->name="";
-        this->counter=0;
+        this->infected=0;
+        this->dead=0;
     }
     void setName(string n){
         this->name = n;
@@ -18,14 +21,20 @@ public:
     string getName(){
         return this->name;
     }
-    int getCounter(){
-        return this->counter;
+    int getInfected(){
+        return this->infected;
     }
-    void IncrementCounter(){
-        this->counter+=1;
+    void IncrementInfected(){
+        this->infected+=1;
     }
-    void toString(){
-        std::cout<<name<<": "<<counter<<"\n";
+    void IncrementDead(){
+        this->dead+=1;
+    }
+    void printInfected(){
+        std::cout<<name<<": "<<infected<<"\n";
+    }
+    void printDead(){
+        std::cout<<name<<": "<<dead<<"\n";
     }
 };
 
