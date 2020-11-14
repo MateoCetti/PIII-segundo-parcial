@@ -55,7 +55,7 @@ public:
         int getEdad(){
 		    return this->edad;
         }
-        string getEdadAñosMeses(){
+        string getEdadAniosMeses(){
 		    return this->edad_anios_meses;
         }
         string getCuiIntensivo(){
