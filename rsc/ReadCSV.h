@@ -43,7 +43,7 @@ void fillCase(string word, int parsedWord, int j, Caso *casoP){
             break;
         case(3):
             word = parseToString(word);
-            casoP->setEdadAñosMeses(word);
+            casoP->setEdadAniosMeses(word);
             break;
         case(7): //printear la provincia
             if(!word.empty()) word = word.substr(1, word.size()-2);

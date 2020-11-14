@@ -25,13 +25,13 @@ public:
 			this->provincia = "";
 			this->clasificacion_resumen = "";
 		};
-		void setID(int id){
-		    this->id = id;
+		void setID(int i){
+		    this->id = i;
 		}
         void setEdad(int e){
                 this->edad = e;
         }
-        void setEdadAñosMeses(string eam){
+        void setEdadAniosMeses(string eam){
                 this->edad_anios_meses = eam;
         }
         void setCuiIntensivo(string cui){

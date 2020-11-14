@@ -73,14 +73,14 @@ int *readArguments(int argc, char **argv){
 /* Verifica si error en el array de int de argumentos,
  * o si todos son -1 */
 bool hasError(int *myArguments){
-    if(myArguments[0] == -2) return 1;
+    if(myArguments[0] == -2) return true;
     bool notEmpty = false;
     for(int i=0;i<5; i++){
         if(myArguments[i] != -1){
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
 
 #endif //INC_2_PARCIAL_ARGUMENTSMANAGEMENT_H
