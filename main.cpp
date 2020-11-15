@@ -53,8 +53,8 @@ int main(int argc, char **argv) {
             int fecha = myArguments[4];
             casosCui(misCasos, casos, fecha);
         }
+        time_t end = time(NULL);
+        cout<<"\nSegundos para correr el/los parametros: "<<end-start<<" \n\n";
     }
-    time_t end = time(NULL);
-    cout<<"\nSegundos para correr el/los parametros: "<<end-start<<" \n\n";
     return 0;
 }
