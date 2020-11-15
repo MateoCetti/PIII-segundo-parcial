@@ -6,13 +6,13 @@
 #include "rsc/Caso.h"
 #include "rsc/ArgumentsManagement.h"
 #include "rsc/ReadCSV.h"
-#include "rsc/p_casos_muertes.h"
+#include "rsc/PCasosMuertes.h"
 #include "rsc/CasosEdad.h"
+#include "rsc/casosCui.h"
 
 using namespace std;
 
 int main(int argc, char **argv) {
-    printf("\033c");
     time_t start = time(NULL);
     int* myArguments = readArguments(argc, argv);
     if(hasError(myArguments)){
@@ -20,6 +20,7 @@ int main(int argc, char **argv) {
               "Por favor ingrese los argumentos correctamente.\n\n\n";
     }
     else{
+        printf("\033c");
         cout<<"\n** Procesando datos **\n\n";
         int casos = getCases();
         Caso *misCasos = new Caso[casos];
@@ -44,6 +45,11 @@ int main(int argc, char **argv) {
             cout<<"\n\n** Mostrando casos por la edad ingresada **\n\n";
             int edad = myArguments[3];
             casosEdad(misCasos, casos, edad);
+        }
+        if(myArguments[4] != -1){
+            cout<<"\n\n** Mostrando casos por fecha de cuidados intensivos **\n\n";
+            int fecha = myArguments[4];
+            casosCui(misCasos, casos, fecha);
         }
     }
     time_t end = time(NULL);

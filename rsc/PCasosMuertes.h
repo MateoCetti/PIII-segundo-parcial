@@ -1,5 +1,5 @@
-#ifndef INC_2_PARCIAL_P_CASOS_MUERTES_H
-#define INC_2_PARCIAL_P_CASOS_MUERTES_H
+#ifndef INC_2_PARCIAL_PCASOSMUERTES_H
+#define INC_2_PARCIAL_PCASOSMUERTES_H
 
 #include "Provincia.h"
 
@@ -68,4 +68,4 @@ void printP(Provincia *misProvincias, int n){
     }
 }
 
-#endif //INC_2_PARCIAL_P_CASOS_MUERTES_H
+#endif //INC_2_PARCIAL_PCASOSMUERTES_H
