@@ -1,6 +1,7 @@
 /* Imprimir en consola - leer archivos - procesar streams - tiempo */
 
 #include <iostream>
+#include "ctime"
 
 #include "rsc/Caso.h"
 #include "rsc/ArgumentsManagement.h"
@@ -12,6 +13,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
     printf("\033c");
+    time_t start = time(NULL);
     int* myArguments = readArguments(argc, argv);
     if(hasError(myArguments)){
         cout<<"\n\nHubo un error en el pasaje de argumentos! \n"
@@ -44,5 +46,7 @@ int main(int argc, char **argv) {
             casosEdad(misCasos, casos, edad);
         }
     }
+    time_t end = time(NULL);
+    cout<<"\nSegundos para correr el/los parametros: "<<end-start<<" \n\n";
     return 0;
 }

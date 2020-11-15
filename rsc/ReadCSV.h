@@ -100,7 +100,6 @@ void fillEstad(Estad *estad, int casos, int infectados,
 }
 
 void exploreCSV(int doEstad, Caso *misCasos, int casos){
-    time_t start = time(NULL);
 
     fstream fin;
     fin.open("./Covid19Casos.csv", ios::in);
@@ -159,9 +158,6 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos){
         fillEstad(estad, casos, infectados, fallecidos, mayorEdad, infPorRango, fallPorRango);
         estad->toString();
     }
-    time_t end = time(NULL);
-    //cout<<"\nSegundos de lectura y guardado del csv: "<<end-start<<" \n\n";
-
 }
 
 #endif //INC_2_PARCIAL_READCSV_H
