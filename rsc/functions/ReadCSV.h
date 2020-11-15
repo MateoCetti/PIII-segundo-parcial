@@ -31,7 +31,9 @@ int parseToInt(string word){
     return stoi(word);
 }
 
-void fillCase(string word, int parsedWord, int j, Caso *casoP){
+/* Llenar un atributo de una instancia de la clase Caso */
+void fillCase(string word, int j, Caso *casoP){
+    int parsedWord;
     switch (j) {
         case(0):
             parsedWord = parseToInt(word);
@@ -75,11 +77,14 @@ void fillCase(string word, int parsedWord, int j, Caso *casoP){
     }
 }
 
-int getCases(){
+/* Obtener la cantidad de muestras en el CSV */
+int getCases(string csv){
     fstream fin;
+    fin.open(csv, ios::in);
+
     string line;
-    fin.open("./Covid19Casos.csv", ios::in);
     int casos = 0;
+
     getline(fin, line);
     while (getline(fin, line)){
         casos+=1;
@@ -87,6 +92,7 @@ int getCases(){
     return casos;
 }
 
+/* Llenar una clase Estad con los datos correspondientes */
 void fillEstad(Estad *estad, int casos, int infectados,
                int fallecidos, int rangoEtario,
                int *infPorRango, int *fallPorRango){
@@ -99,11 +105,33 @@ void fillEstad(Estad *estad, int casos, int infectados,
     estad->setFallRange(fallPorRango, rangoEtario);
 }
 
+/* Llenar los atributos infPorRango y fallPorRango de estad */
+void fillRangedEstadVars(Caso miCaso, int *infPorRango, int *fallPorRango){
+    if(miCaso.getClasifResumen().compare("Confirmado") == 0){
+        if(miCaso.getEdadAniosMeses().compare("Meses") == 0){
+            infPorRango[0]+=1;
+        }else{
+            infPorRango[miCaso.getEdad()/10]+=1;
+        }
+    }
+
+    if(miCaso.getFallecido().compare("SI") == 0){
+        if(miCaso.getEdadAniosMeses().compare("Meses") == 0){
+            fallPorRango[0]+=1;
+        }else{
+            fallPorRango[miCaso.getEdad()/10]+=1;
+        }
+    }
+}
+
+/* Leer y guardar el CSV en un array | ejecutar -estad de ser necesario */
 void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
     string line, word;
-        fstream fin;
+
+    fstream fin;
     fin.open(csv, ios::in);
 
+    /* estad */
     int infectados = 0;
     int fallecidos = 0;
     int mayorEdad = 0;
@@ -112,15 +140,14 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
     getline(fin, line);
 
     while (getline(fin, line)){
-        /* para las fechas y los enteros */
-        int parsedWord = 0;
         stringstream s(line);
 
         for (int j = 0; j <= 20; j++){
             getline(s, word, ',');
-            fillCase(word, parsedWord, j, &misCasos[aux]);
+            fillCase(word, j, &misCasos[aux]);
         }
 
+        /* estad */
         if(doEstad != -1){
             if(misCasos[aux].getFallecido().compare("SI") == 0) fallecidos+=1;
             if(misCasos[aux].getClasifResumen().compare("Confirmado") == 0) infectados+=1;
@@ -129,6 +156,7 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
         aux+=1;
     }
 
+    /* estad */
     if(doEstad != -1){
         Estad *estad = new Estad;
         cout<<"** Mostrando datos estadisticos **\n";
@@ -137,22 +165,7 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
         int fallPorRango[mayorEdad] = {};
 
         for(int i = 0; i< casos; i++){
-
-            if(misCasos[i].getClasifResumen().compare("Confirmado") == 0){
-                if(misCasos[i].getEdadAniosMeses().compare("Meses") == 0){
-                    infPorRango[0]+=1;
-                }else{
-                    infPorRango[misCasos[i].getEdad()/10]+=1;
-                }
-            }
-
-            if(misCasos[i].getFallecido().compare("SI") == 0){
-                if(misCasos[i].getEdadAniosMeses().compare("Meses") == 0){
-                    fallPorRango[0]+=1;
-                }else{
-                    fallPorRango[misCasos[i].getEdad()/10]+=1;
-                }
-            }
+            fillRangedEstadVars(misCasos[i], infPorRango, fallPorRango);
         }
         fillEstad(estad, casos, infectados, fallecidos, mayorEdad, infPorRango, fallPorRango);
         estad->toString();

@@ -5,9 +5,7 @@
 
 using namespace std;
 
-/* Verifica si el argumento pasado por
- * parametro es un "auxiliar" o no */
-
+/* Verificar si el parametro es un archivo .csv */
 bool verifyCSV(string arg){
     if(arg.find(".csv") == string::npos){
         return false;
@@ -15,6 +13,8 @@ bool verifyCSV(string arg){
     return true;
 }
 
+/* Verifica si el argumento pasado por
+ * parametro es un "auxiliar" o no */
 bool hasAuxiliar(char *nextArg){
     string arg = nextArg;
     if(arg[0] == '-' || verifyCSV(arg)){
@@ -32,8 +32,9 @@ int parseParToDate(string par){
     return -2;
 }
 
-/* Lee los argumentos pasados en la ejecucion del codigo
- * y devuelve un array de 5 enteros. cada entero en el array
+/*
+ * Lee los argumentos pasados en la ejecucion del codigo
+ * y devuelve un array de 5 enteros. cada posicion
  * significa un argumento (Pos: 0->estad, 1->p_casos,
  * 2->p_muertes, 3->casos_edad, 4->casos_cui)
 */
@@ -41,7 +42,9 @@ int *readArguments(int argc, char **argv){
     int *myArguments = new int[5]{-1, -1, -1, -1, -1};
     string lastArgument = argv[argc-1];
     for (int i = 1; i < argc-1; i++){
+        /* Verify flag */
         if(argv[i][0] == '-'){
+            /* Verificar cada argumento */
             if (strcmp(argv[i], "-estad") == 0) {
                 myArguments[0] = 0;
             }
@@ -93,7 +96,7 @@ int *readArguments(int argc, char **argv){
     return myArguments;
 }
 
-/* Verifica si error en el array de int de argumentos,
+/* Verifica si hay error en el array de int de argumentos,
  * o si todos son -1 */
 bool hasError(int *myArguments){
     if(myArguments[0] == -2) return true;

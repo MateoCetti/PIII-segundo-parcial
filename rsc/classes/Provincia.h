@@ -3,14 +3,18 @@
 
 #include "cstring"
 
+/* Structura para provincias */
 class Provincia{
 private:
     string name;
-    int counter; // infectados y muertes
+    int infected;
+    int deaths;
+
 public:
     Provincia(){
         this->name="";
-        this->counter=0;
+        this->infected=0;
+        this->deaths=0;
     }
     void setName(string n){
         this->name = n;
@@ -18,14 +22,23 @@ public:
     string getName(){
         return this->name;
     }
-    int getCounter(){
-        return this->counter;
+    int getInfected(){
+        return this->infected;
     }
-    void IncrementCounter(){
-        this->counter+=1;
+    int getDeads(){
+        return this->deaths;
     }
-    void toString(){
-        std::cout<<name<<": "<<counter<<"\n";
+    void IncrementInfected(){
+        this->infected+=1;
+    }
+    void IncrementDeads(){
+        this->deaths+=1;
+    }
+    void printInfected(){
+        std::cout<<name<<": "<<infected<<"\n";
+    }
+    void printDeads(){
+        std::cout<<name<<": "<<deaths<<"\n";
     }
 };
 

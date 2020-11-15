@@ -12,49 +12,64 @@
 
 using namespace std;
 
+void manageData(int *myArguments, Caso *misCasos, int casos, char **argv, int argc){
+
+    exploreCSV(myArguments[0], misCasos, casos, argv[argc-1]);
+
+    /* procesar -p_casos  y p_muertes*/
+    if(myArguments[1] != -1 || myArguments[2] != -1){
+        Provincia misProvincias[24];
+        p_casos_muertes(misProvincias, misCasos, casos);
+        /* Imprimir p_casos */
+        if(myArguments[1] != -1){
+            int n = myArguments[1] == 0 ? 24 : myArguments[1];
+            printP(misProvincias, n, 'c');
+        }
+        /* Imprimir p_casos */
+        if(myArguments[2] != -1){
+            int n = myArguments[2] == 0 ? 24 : myArguments[2];
+            printP(misProvincias, n, 'f');
+        }
+    }
+    /* ejecutar -casos_edad */
+    if(myArguments[3] != -1){
+        cout<<"\n\n** Mostrando casos por la edad ingresada **\n\n";
+        int edad = myArguments[3];
+        casosEdad(misCasos, casos, edad);
+    }
+    /* ejecutar -casos_cui */
+    if(myArguments[4] != -1){
+        cout<<"\n\n** Mostrando casos por fecha de cuidados intensivos **\n\n";
+        int fecha = myArguments[4];
+        casosCui(misCasos, casos, fecha);
+    }
+}
+
 int main(int argc, char **argv) {
+
     time_t start = time(NULL);
+
+    /* -2 ERROR | -1 Not requested | n Requested */
     int* myArguments = readArguments(argc, argv);
+
     fstream fin;
     fin.open(argv[argc-1], ios::in);
+
     if(hasError(myArguments) || !fin.is_open()){
         cout<<"\n\nHubo un error en el pasaje de argumentos! \n"
               "Por favor ingrese los argumentos correctamente.\n\n\n";
+        return 0;
     }
-    else{
-        printf("\033c");
-        cout<<"\n** Procesando datos **\n\n";
-        int casos = getCases();
-        Caso *misCasos = new Caso[casos];
 
-        exploreCSV(myArguments[0], misCasos, casos, argv[argc-1]);
+    printf("\033c");
+    cout<<"\n** Procesando datos **\n\n";
 
-        if(myArguments[1] != -1){
-            cout<<"\n\n** Mostrando contagios por provincia **\n\n";
-            Provincia misProvincias[24];
-            p_casos_muertes(misProvincias, misCasos, casos, 'c');
-            int n = myArguments[1] == 0 ? 24 : myArguments[1];
-            printP(misProvincias, n);
-        }
-        if(myArguments[2] != -1){
-            cout<<"\n\n** Mostrando fallecidos por provincia **\n\n";
-            Provincia misProvincias[24];
-            p_casos_muertes(misProvincias, misCasos, casos, 'f');
-            int n = myArguments[2] == 0 ? 24 : myArguments[2];
-            printP(misProvincias, n);
-        }
-        if(myArguments[3] != -1){
-            cout<<"\n\n** Mostrando casos por la edad ingresada **\n\n";
-            int edad = myArguments[3];
-            casosEdad(misCasos, casos, edad);
-        }
-        if(myArguments[4] != -1){
-            cout<<"\n\n** Mostrando casos por fecha de cuidados intensivos **\n\n";
-            int fecha = myArguments[4];
-            casosCui(misCasos, casos, fecha);
-        }
-        time_t end = time(NULL);
-        cout<<"\nSegundos para correr el/los parametros: "<<end-start<<" \n\n";
-    }
+    int casos = getCases(argv[argc-1]);
+    Caso *misCasos = new Caso[casos];
+
+    manageData(myArguments, misCasos, casos, argv, argc);
+
+    time_t end = time(NULL);
+    cout<<"\nSegundos para correr el/los parametros: "<<end-start<<" \n\n";
     return 0;
 }
