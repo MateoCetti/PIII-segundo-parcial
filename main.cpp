@@ -15,18 +15,14 @@ using namespace std;
 int main(int argc, char **argv) {
     time_t start = time(NULL);
     int* myArguments = readArguments(argc, argv);
-    if(hasError(myArguments)){
+    fstream fin;
+    fin.open(argv[argc-1], ios::in);
+    if(hasError(myArguments) || !fin.is_open()){
         cout<<"\n\nHubo un error en el pasaje de argumentos! \n"
               "Por favor ingrese los argumentos correctamente.\n\n\n";
     }
-    fstream fin;
-    fin.open(argv[argc-1], ios::in);
-
-    if(!fin.is_open()){
-        cout<<"El archivo especificado no existe o no esta en el directorio del proyecto.";
-    }
     else{
-        //printf("\033c");
+        printf("\033c");
         cout<<"\n** Procesando datos **\n\n";
         int casos = getCases();
         Caso *misCasos = new Caso[casos];

@@ -35,6 +35,16 @@ void quickSortEdad(Caso *arr, int first, int last){
 void casosEdad(Caso *misCasos, int casos, int edad){
 	Pila<Caso> casosAux;
 	int contador = 0;
+	int maxEdad=0;
+	for(int i=0; i<casos; i++){
+	    if(misCasos[i].getEdad()>maxEdad && misCasos[i].getEdad()<200){
+	        maxEdad = misCasos[i].getEdad();
+	    }
+	}
+	if(edad > maxEdad){
+	    cout<<"La edad ingresada es erronea.\n";
+	    return;
+	}
 	for (int i = 0; i < casos; i++){
 		if(misCasos[i].getEdadAniosMeses().compare("Años") == 0){
 			if (misCasos[i].getEdad() == edad){
