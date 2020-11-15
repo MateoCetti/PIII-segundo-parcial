@@ -33,23 +33,24 @@ void quickSortEdad(Caso *arr, int first, int last){
 
 Pila<Caso> *binarySearch(Caso *misCasos, int inf, int sup, int edad){
     int mitad, aux;
-    Pila<Caso> *res;
-        mitad = (inf+sup)/2;
+    Pila<Caso> *res = new Pila<Caso>;
+    mitad = (inf+sup)/2;
+    misCasos[mitad].toString();
+    cout<<misCasos[mitad].getEdad();
         if(misCasos[mitad].getEdad()==edad){
             res->push(misCasos[mitad]);
-            aux = mitad;
+            aux = mitad-1;
             while (misCasos[aux].getEdad()==edad){
+                res->push(misCasos[aux]);
                 aux--;
-                res->push(misCasos[aux]);
             }
-            aux = mitad;
+            aux = mitad+1;
             while (misCasos[aux].getEdad()==edad){
-                aux++;
                 res->push(misCasos[aux]);
+                aux++;
             }
             return res;
         }
-    misCasos[mitad].toString();
     if(misCasos[mitad].getEdad()>edad) binarySearch(misCasos, inf, mitad, edad);
     else if(misCasos[mitad].getEdad()<edad) binarySearch(misCasos,mitad,sup,edad);
 }
@@ -80,35 +81,13 @@ void quickSortProvincia(Caso *arr, int first, int last){
 
 void casosEdad(Caso *misCasos, int casos, int edad){
 	Pila<Caso> casosAux;
-	int contador = 0;
 
     quickSortEdad(misCasos,0, casos-1);
-	Pila<Caso> *anda = binarySearch(misCasos, 0, casos, edad);
+    Pila<Caso> *anda;
+	anda = binarySearch(misCasos, 0, casos, edad);
 	while (!anda->esVacia()){
 	    anda->pop().toString();
 	}
-	/*
-	for (int i = 0; i < casos; i++){
-		if(misCasos[i].getEdadAniosMeses().compare("Años") == 0){
-			if (misCasos[i].getEdad() == edad){
-				contador += 1;
-				casosAux.push(misCasos[i]);
-			}
-		}
-	}
-	Caso *casosPorEdad = new Caso[contador];
-	for (int j = 0; j < contador; j++){
-		if(casosAux.peek().getProvincia().compare("Córdoba") == 0){
-			Caso aux = casosAux.pop();
-			aux.setProvincia("Cordoba");
-			casosAux.push(aux);
-		}
-		casosPorEdad[j] = casosAux.pop();
-	}
-	//quickSortEdad(casosPorEdad, 0, contador-1);
-	for (int i = 0; i < contador; i+=100){
-		casosPorEdad[i].toString();
-	}*/
 }
 
 #endif //INC_2_PARCIAL_CASOSEDAD_H
