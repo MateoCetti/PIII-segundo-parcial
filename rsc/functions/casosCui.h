@@ -31,6 +31,7 @@ void quickSortFecha(Caso *arr, int first, int last){
 void casosCui(Caso *misCasos, int casos, int fecha){
     Pila<Caso> casosAux;
     int contador = 0;
+    bool flag = false;
     if(fecha==0){
         for (int i = 0; i < casos; i++){
             if(misCasos[i].getCuiIntensivo().compare("SI") == 0){
@@ -44,9 +45,14 @@ void casosCui(Caso *misCasos, int casos, int fecha){
                 if (misCasos[i].getFechaCuiIntensivo() >= fecha){
                     contador += 1;
                     casosAux.push(misCasos[i]);
+                    flag = true;
                 }
             }
         }
+    }
+    if (!flag){
+        cout<<"Fecha incorrecta\n";
+        return;
     }
     Caso *casosPorFecha = new Caso[contador];
     for (int j = 0; j < contador; j++){
