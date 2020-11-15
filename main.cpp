@@ -3,12 +3,12 @@
 #include <iostream>
 #include "ctime"
 
-#include "rsc/Caso.h"
-#include "rsc/ArgumentsManagement.h"
-#include "rsc/ReadCSV.h"
-#include "rsc/PCasosMuertes.h"
-#include "rsc/CasosEdad.h"
-#include "rsc/casosCui.h"
+#include "rsc/classes/Caso.h"
+#include "rsc/functions/ArgumentsManagement.h"
+#include "rsc/functions/ReadCSV.h"
+#include "rsc/functions/PCasosMuertes.h"
+#include "rsc/functions/CasosEdad.h"
+#include "rsc/functions/casosCui.h"
 
 using namespace std;
 

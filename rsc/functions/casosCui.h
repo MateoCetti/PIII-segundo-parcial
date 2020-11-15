@@ -1,8 +1,8 @@
 #ifndef INC_2_PARCIAL_CASOSCUI_H
 #define INC_2_PARCIAL_CASOSCUI_H
 
-#include "Caso.h"
-#include "Pila.h"
+#include "../classes/Caso.h"
+#include "../classes/Pila.h"
 
 void quickSortFecha(Caso *arr, int first, int last){
     int i, j, middle;

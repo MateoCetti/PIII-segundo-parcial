@@ -1,7 +1,7 @@
 #ifndef INC_2_PARCIAL_PCASOSMUERTES_H
 #define INC_2_PARCIAL_PCASOSMUERTES_H
 
-#include "Provincia.h"
+#include "../classes/Provincia.h"
 
 void quickSort(Provincia *arr, int first, int last){
     int i, j, middle;

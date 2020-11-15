@@ -3,8 +3,8 @@
 
 #include "iostream"
 #include "string.h"
-#include "Caso.h"
-#include "Pila.h"
+#include "../classes/Caso.h"
+#include "../classes/Pila.h"
 
 using namespace std;
 

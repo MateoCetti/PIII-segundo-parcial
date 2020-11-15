@@ -8,8 +8,8 @@
 #include "ctime"
 #include "cmath"
 
-#include "Caso.h"
-#include "Estad.h"
+#include "../classes/Caso.h"
+#include "../classes/Estad.h"
 
 int parseToDate(string word){
     if(word.empty()) return 0;
