@@ -33,6 +33,7 @@ void casosCui(Caso *misCasos, int casos, int fecha){
     int contador = 0;
     bool flag = false;
     if(fecha==0){
+        flag=true;
         for (int i = 0; i < casos; i++){
             if(misCasos[i].getCuiIntensivo().compare("SI") == 0){
                 contador += 1;
