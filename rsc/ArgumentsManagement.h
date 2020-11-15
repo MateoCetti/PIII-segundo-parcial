@@ -10,6 +10,13 @@ bool hasAuxiliar(char *nextArg){
     return false;
 }
 
+int parseParToDate(string par){
+    //par = par.substr(1, par.size()-2);
+    par.replace(4,1,"");
+    par.replace(6,1,"");
+    return stoi(par);
+}
+
 /* Lee los argumentos pasados en la ejecucion del codigo
  * y devuelve un array de 5 enteros. cada entero en el array
  * significa un argumento (Pos: 0->estad, 1->p_casos,
@@ -49,7 +56,7 @@ int *readArguments(int argc, char **argv){
             else if(strcmp(argv[i], "-casos_cui")  == 0) {
                 if(i < argc-1 && hasAuxiliar(argv[i+1])){
                     i+=1;
-                    myArguments[4] = stoi(argv[i]);
+                    myArguments[4] = parseParToDate(argv[i]);
                 }else{
                     myArguments[4] = 0;
                 }
