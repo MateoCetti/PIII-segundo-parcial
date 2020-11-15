@@ -99,18 +99,17 @@ void fillEstad(Estad *estad, int casos, int infectados,
     estad->setFallRange(fallPorRango, rangoEtario);
 }
 
-void exploreCSV(int doEstad, Caso *misCasos, int casos){
-
-    fstream fin;
-    fin.open("./Covid19Casos.csv", ios::in);
+void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
     string line, word;
-
-    getline(fin, line);
+        fstream fin;
+    fin.open(csv, ios::in);
 
     int infectados = 0;
     int fallecidos = 0;
     int mayorEdad = 0;
     int aux = 0;
+
+    getline(fin, line);
 
     while (getline(fin, line)){
         /* para las fechas y los enteros */

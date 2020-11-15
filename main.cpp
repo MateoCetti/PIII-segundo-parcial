@@ -19,13 +19,19 @@ int main(int argc, char **argv) {
         cout<<"\n\nHubo un error en el pasaje de argumentos! \n"
               "Por favor ingrese los argumentos correctamente.\n\n\n";
     }
+    fstream fin;
+    fin.open(argv[argc-1], ios::in);
+
+    if(!fin.is_open()){
+        cout<<"El archivo especificado no existe o no esta en el directorio del proyecto.";
+    }
     else{
-        printf("\033c");
+        //printf("\033c");
         cout<<"\n** Procesando datos **\n\n";
         int casos = getCases();
         Caso *misCasos = new Caso[casos];
 
-        exploreCSV(myArguments[0], misCasos, casos);
+        exploreCSV(myArguments[0], misCasos, casos, argv[argc-1]);
 
         if(myArguments[1] != -1){
             cout<<"\n\n** Mostrando contagios por provincia **\n\n";

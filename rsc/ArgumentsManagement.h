@@ -24,7 +24,7 @@ int parseParToDate(string par){
 */
 int *readArguments(int argc, char **argv){
     int *myArguments = new int[5]{-1, -1, -1, -1, -1};
-    for (int i = 1; i < argc; i++){
+    for (int i = 1; i < argc-1; i++){
         if(argv[i][0] == '-'){
             if (strcmp(argv[i], "-estad") == 0) {
                 myArguments[0] = 0;
@@ -69,6 +69,11 @@ int *readArguments(int argc, char **argv){
         else{
             myArguments[0] = -2;
         }
+
+    }
+    string last = argv[argc-1];
+    if(last.find(".csv") == string::npos){
+        myArguments[0] = -2;
     }
     return myArguments;
 }
