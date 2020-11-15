@@ -33,13 +33,11 @@ void manageData(int *myArguments, Caso *misCasos, int casos, char **argv, int ar
     }
     /* ejecutar -casos_edad */
     if(myArguments[3] != -1){
-        cout<<"\n\n** Mostrando casos por la edad ingresada **\n\n";
         int edad = myArguments[3];
         casosEdad(misCasos, casos, edad);
     }
     /* ejecutar -casos_cui */
     if(myArguments[4] != -1){
-        cout<<"\n\n** Mostrando casos por fecha de cuidados intensivos **\n\n";
         int fecha = myArguments[4];
         casosCui(misCasos, casos, fecha);
     }
@@ -49,7 +47,7 @@ int main(int argc, char **argv) {
 
     time_t start = time(NULL);
 
-    /* -2 ERROR | -1 Not requested | n Requested */
+    /* -2 ERROR | -1 Not requested | n Requested (n>=0) */
     int* myArguments = readArguments(argc, argv);
 
     fstream fin;

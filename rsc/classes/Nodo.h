@@ -1,8 +1,8 @@
 #ifndef INC_2_PARCIAL_NODO_H
 #define INC_2_PARCIAL_NODO_H
 
-template <class T>
-class Node{
+/* Estructura para un nodo */
+template <class T> class Node{
 private:
   T dato;
   Node<T> *siguiente;

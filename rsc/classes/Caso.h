@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/* Estructura para una muestra */
 class Caso{
 private:
 		int id;

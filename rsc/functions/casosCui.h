@@ -28,16 +28,14 @@ void quickSortFecha(Caso *arr, int first, int last){
     if(i< last) quickSortFecha(arr, i, last);
 }
 
-void casosCui(Caso *misCasos, int casos, int fecha){
-    Pila<Caso> casosAux;
+/* Llenar la pila con los datos pedidos | Devuelve el contador */
+int fillPilaCui(Caso *misCasos, int casos, Pila<Caso> *casosAux, int fecha){
     int contador = 0;
-    bool flag = false;
     if(fecha==0){
-        flag=true;
         for (int i = 0; i < casos; i++){
             if(misCasos[i].getCuiIntensivo().compare("SI") == 0){
                 contador += 1;
-                casosAux.push(misCasos[i]);
+                casosAux->push(misCasos[i]);
             }
         }
     }else{
@@ -45,29 +43,51 @@ void casosCui(Caso *misCasos, int casos, int fecha){
             if(misCasos[i].getCuiIntensivo().compare("SI") == 0){
                 if (misCasos[i].getFechaCuiIntensivo() >= fecha){
                     contador += 1;
-                    casosAux.push(misCasos[i]);
-                    flag = true;
+                    casosAux->push(misCasos[i]);
                 }
             }
         }
     }
-    if (!flag){
+    return contador;
+}
+
+/* Pasa los casos de la pila al array */
+void passDataCui(Caso *casosPorFecha, Pila<Caso> *casosAux, int contador){
+    for (int j = 0; j < contador; j++){
+        if(casosAux->peek().getProvincia().compare("Córdoba") == 0){
+            Caso aux = casosAux->pop();
+            aux.setProvincia("Cordoba");
+            casosAux->push(aux);
+        }
+        casosPorFecha[j] = casosAux->pop();
+    }
+}
+
+/* Printea los casos */
+void printCasosCui(Caso *casosPorFecha, int contador){
+    cout<<"\n\n** Mostrando casos por fecha de cuidados intensivos **\n\n";
+    for (int i = 0; i < contador; i++){
+        casosPorFecha[i].toString();
+    }
+}
+
+/* Manage casos_cui */
+void casosCui(Caso *misCasos, int casos, int fecha){
+    Pila<Caso> *casosAux = new Pila<Caso>;
+    int contador = fillPilaCui(misCasos, casos, casosAux, fecha);
+
+    if (casosAux->esVacia()){
         cout<<"Fecha incorrecta\n";
         return;
     }
+
     Caso *casosPorFecha = new Caso[contador];
-    for (int j = 0; j < contador; j++){
-        if(casosAux.peek().getProvincia().compare("Córdoba") == 0){
-            Caso aux = casosAux.pop();
-            aux.setProvincia("Cordoba");
-            casosAux.push(aux);
-        }
-        casosPorFecha[j] = casosAux.pop();
-    }
+
+    passDataCui(casosPorFecha, casosAux, contador);
+
     quickSortFecha(casosPorFecha, 0, contador-1);
-    for (int i = 0; i < contador; i+=100){
-        casosPorFecha[i].toString();
-    }
+
+    printCasosCui(casosPorFecha, contador);
 }
 
 #endif //INC_2_PARCIAL_CASOSCUI_H

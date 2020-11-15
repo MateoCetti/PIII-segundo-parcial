@@ -3,6 +3,7 @@
 
 #include "iostream"
 
+/* Estructura para los datos estadisticos */
 class Estad{
 private:
     int muestras;

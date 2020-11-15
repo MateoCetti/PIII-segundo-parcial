@@ -51,6 +51,7 @@ void quickSortDeaths(Provincia *arr, int first, int last){
     if(i< last) quickSortDeaths(arr, i, last);
 }
 
+/* Manage p_casos & p_muertes */
 void p_casos_muertes(Provincia *misProvincias,Caso *misCasos, int casos){
     string provincias[24] = {
             "Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes",
@@ -80,6 +81,7 @@ void p_casos_muertes(Provincia *misProvincias,Caso *misCasos, int casos){
     }
 }
 
+/* Print p_casos or p_muertes */
 void printP(Provincia *misProvincias, int n, char p){
     if(p=='c'){
         cout<<"\n\n** Mostrando contagios por provincia **\n\n";

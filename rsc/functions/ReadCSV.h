@@ -124,6 +124,20 @@ void fillRangedEstadVars(Caso miCaso, int *infPorRango, int *fallPorRango){
     }
 }
 
+void manageEstad(int mayorEdad, Caso *misCasos, int casos, int infectados, int fallecidos){
+    Estad *estad = new Estad;
+    cout<<"** Mostrando datos estadisticos **\n";
+    mayorEdad = ceil((double)mayorEdad/10);
+    int infPorRango[mayorEdad] = {};
+    int fallPorRango[mayorEdad] = {};
+
+    for(int i = 0; i< casos; i++){
+        fillRangedEstadVars(misCasos[i], infPorRango, fallPorRango);
+    }
+    fillEstad(estad, casos, infectados, fallecidos, mayorEdad, infPorRango, fallPorRango);
+    estad->toString();
+}
+
 /* Leer y guardar el CSV en un array | ejecutar -estad de ser necesario */
 void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
     string line, word;
@@ -158,17 +172,7 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
 
     /* estad */
     if(doEstad != -1){
-        Estad *estad = new Estad;
-        cout<<"** Mostrando datos estadisticos **\n";
-        mayorEdad = ceil((double)mayorEdad/10);
-        int infPorRango[mayorEdad] = {};
-        int fallPorRango[mayorEdad] = {};
-
-        for(int i = 0; i< casos; i++){
-            fillRangedEstadVars(misCasos[i], infPorRango, fallPorRango);
-        }
-        fillEstad(estad, casos, infectados, fallecidos, mayorEdad, infPorRango, fallPorRango);
-        estad->toString();
+        manageEstad(mayorEdad, misCasos, casos, infectados, fallecidos);
     }
 }
 
