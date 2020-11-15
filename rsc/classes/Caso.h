@@ -75,9 +75,17 @@ public:
 		    return this->clasificacion_resumen;
         }
         void toString(){
-		    cout<<"| "<<this->id <<" | "<<this->edad <<" | "<<this->edad_anios_meses <<" | "<<this->cuidado_intensivo
-		    <<" | "<<this->fecha_cui_intensivo <<" | "<<this->fallecido <<" | "<<this->provincia <<" | "
-		    <<this->clasificacion_resumen <<" | \n";
+            string fechaCuiAux;
+		    if(fecha_cui_intensivo == 0){ // 0000-0000
+		        fechaCuiAux = "0000-00-00";
+		    }else{
+                fechaCuiAux = to_string(fecha_cui_intensivo);
+                fechaCuiAux.insert(4,1, '-');
+                fechaCuiAux.insert(7,1, '-');
+		    }
+		    cout<<"| ID: "<<this->id <<" | Edad: "<<this->edad <<" "<<this->edad_anios_meses <<" | CUI: "<<this->cuidado_intensivo
+		    <<" "<<fechaCuiAux  <<" | Fallec: "<<this->fallecido <<" | Prov: "<<this->provincia <<" | Clasif: "
+		    <<this->clasificacion_resumen <<" |\n";
 		};
 };
 

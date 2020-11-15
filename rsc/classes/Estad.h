@@ -54,18 +54,20 @@ public:
     }
 
     void toString(){
-        std::cout<<"\nCantidad de muestras: "<<muestras
-        <<"\nCantidad de infectados: "<<infectados
-        <<"\nCantidad de fallecidos: "<<fallecidos
-        <<"\nPorcentaje de infectados por muestras: "<<infPorMuestras
-        <<"\nPorcentaje de fallecidos por infectados: "<<fallPorInfectados<<"\n";
-        std::cout<<"Infectados por rango etario: ";
+        std::cout<<"\n Muestras: "<<muestras
+        <<" \n Infectados: "<<infectados
+        <<" \n Fallecidos: "<<fallecidos
+        <<" \n Porcentaje de infectados por muestras: "<<infPorMuestras<< " %"
+        <<" \n Porcentaje de fallecidos por infectados: "<<fallPorInfectados<<" % \n";
+        std::cout<<"-----------------------------------------------\n";
+        std::cout<<"Infectados por rango etario: \n";
         for (int i = 0; i<rangoEtario; i++){
-            std::cout<<infecRangoEtario[i]<<" ";
+            std::cout<<"["<<i*10<<"-"<<(i+1)*10<<" Años]: "<<infecRangoEtario[i]<<"\n";
         }
-        std::cout<<"\nFallecidos por rango etario: ";
+        std::cout<<"-----------------------------------------------\n";
+        std::cout<<"\nFallecidos por rango etario: \n";
         for (int i = 0; i<rangoEtario; i++){
-            std::cout<<fallrangoEtario[i]<<" ";
+            std::cout<<"["<<i*10<<"-"<<(i+1)*10<<" Años]: "<<fallrangoEtario[i]<<"\n";
         }
         std::cout<<"\n";
     }

@@ -171,6 +171,7 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
     }
 
     /* estad */
+    printf("\033c");
     if(doEstad != -1){
         manageEstad(mayorEdad, misCasos, casos, infectados, fallecidos);
     }

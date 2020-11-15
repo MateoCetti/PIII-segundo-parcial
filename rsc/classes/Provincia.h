@@ -35,10 +35,10 @@ public:
         this->deaths+=1;
     }
     void printInfected(){
-        std::cout<<name<<": "<<infected<<"\n";
+        std::cout<<"| Provincia: "<<name<<" | Infectados: "<<infected<<" |\n";
     }
     void printDeads(){
-        std::cout<<name<<": "<<deaths<<"\n";
+        std::cout<<"| Provincia: "<<name<<" | Fallecidos: "<<deaths<<" |\n";
     }
 };
 
