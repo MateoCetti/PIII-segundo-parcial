@@ -12,7 +12,13 @@
 
 using namespace std;
 
-void manageData(int *myArguments, Caso *misCasos, int casos, string csv){
+void manageData(int *myArguments, string csv){
+
+    int casos = getCases(csv);
+    Caso *misCasos = new Caso[casos];
+
+    printf("\033c");
+    cout<<"\n** Procesando datos **\n\n";
 
     exploreCSV(myArguments[0], misCasos, casos, csv);
 
@@ -50,8 +56,10 @@ int main(int argc, char **argv) {
     /* -2 ERROR | -1 Not requested | n Requested (n>=0) */
     int* myArguments = readArguments(argc, argv);
 
+    string csv = argv[argc-1]; // Nombre del archivo CSV
+
     fstream fin;
-    fin.open(argv[argc-1], ios::in);
+    fin.open(csv, ios::in);
 
     if(hasError(myArguments) || !fin.is_open()){
         cout<<"\n\nHubo un error en el pasaje de argumentos! \n"
@@ -59,13 +67,7 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    printf("\033c");
-    cout<<"\n** Procesando datos **\n\n";
-
-    int casos = getCases(argv[argc-1]);
-    Caso *misCasos = new Caso[casos];
-
-    manageData(myArguments, misCasos, casos, argv[argc-1]);
+    manageData(myArguments, csv);
 
     time_t end = time(NULL);
     cout<<"\nSegundos para correr el/los parametros: "<<end-start<<" \n\n";

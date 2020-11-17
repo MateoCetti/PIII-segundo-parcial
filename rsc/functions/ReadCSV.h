@@ -164,6 +164,8 @@ void exploreCSV(int doEstad, Caso *misCasos, int casos, string csv){
         aux+=1;
     }
 
+    fin.close();
+
     /* estad */
     printf("\033c");
     if(doEstad != -1){

@@ -72,8 +72,11 @@ g++ *.cpp *.h -o covid19
 Para un correcto uso del comando, se deberán seguir las siguientes indicaciones. Primero, suponemos que el codigo ya esta correctamente compilado y este se llama “covid19”. Luego, podemos introducir por consola el siguiente comando, siempre y cuando estemos en el directorio del proyecto:
 
 ```sh
-covid19 [argumentos]
+covid19 [argumentos] [Base de datos]
 ```
+
+Cabe destacar que la base de datos debera estar en el mismo directorio
+ que el proyecto. Los argumentos que se aceptan son los siguientes:
 
 Argumentos | Devuelve
 ------------ | -------------
@@ -84,8 +87,8 @@ Argumentos | Devuelve
 -casos_cui [fecha] | Mostrará los datos de los casos que estuvieron en cuidados intensivos ordenados por fecha de cuidados intensivos, si fecha está indicada, se mostrarán solo las fechas mayores a esta.
 ***
 
-Si necesitas mas informacion podes leer nuesta 
-[Documentacion](https://docs.google.com/document/d/1CxsKLt2K9ZAEqB5bbsYQTNhIOhaODKXgXaw-z-IXA4k/edit?usp=sharing)
+Para mas informacion, visita la 
+[Documentacion](https://docs.google.com/document/d/1CxsKLt2K9ZAEqB5bbsYQTNhIOhaODKXgXaw-z-IXA4k/edit?usp=sharing).
 
 
 <!-- Contactanos -->
