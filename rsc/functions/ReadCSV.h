@@ -89,6 +89,7 @@ int getCases(string csv){
     while (getline(fin, line)){
         casos+=1;
     }
+    fin.close();
     return casos;
 }
 

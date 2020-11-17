@@ -12,9 +12,9 @@
 
 using namespace std;
 
-void manageData(int *myArguments, Caso *misCasos, int casos, char **argv, int argc){
+void manageData(int *myArguments, Caso *misCasos, int casos, string csv){
 
-    exploreCSV(myArguments[0], misCasos, casos, argv[argc-1]);
+    exploreCSV(myArguments[0], misCasos, casos, csv);
 
     /* procesar -p_casos  y p_muertes*/
     if(myArguments[1] != -1 || myArguments[2] != -1){
@@ -65,9 +65,10 @@ int main(int argc, char **argv) {
     int casos = getCases(argv[argc-1]);
     Caso *misCasos = new Caso[casos];
 
-    manageData(myArguments, misCasos, casos, argv, argc);
+    manageData(myArguments, misCasos, casos, argv[argc-1]);
 
     time_t end = time(NULL);
     cout<<"\nSegundos para correr el/los parametros: "<<end-start<<" \n\n";
+    fin.close();
     return 0;
 }
