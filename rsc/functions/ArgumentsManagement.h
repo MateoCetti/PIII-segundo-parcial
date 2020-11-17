@@ -13,6 +13,14 @@ bool verifyCSV(string arg){
     return true;
 }
 
+void verifyAux(int* myArguments, string arg, int pos){
+    try {
+        myArguments[pos] = stoi(arg);
+    } catch (std::invalid_argument e) {
+        myArguments[0] = -2;
+    }
+}
+
 /* Verifica si el argumento pasado por
  * parametro es un "auxiliar" o no */
 bool hasAuxiliar(char *nextArg){
@@ -22,6 +30,8 @@ bool hasAuxiliar(char *nextArg){
     }
     return true;
 }
+
+
 
 int parseParToDate(string par){
     if(par.length() == 10){
@@ -51,7 +61,8 @@ int *readArguments(int argc, char **argv){
             else if(strcmp(argv[i], "-p_casos")  == 0) {
                 if(i < argc-2 && hasAuxiliar(argv[i+1])){
                     i+=1;
-                    myArguments[1] = stoi(argv[i]);
+                    verifyAux(myArguments, argv[i], i);
+
                 }else{
                     myArguments[1] = 0;
                 }
@@ -59,7 +70,7 @@ int *readArguments(int argc, char **argv){
             else if(strcmp(argv[i], "-p_muertes")  == 0) {
                 if(i < argc-2 && hasAuxiliar(argv[i+1])){
                     i+=1;
-                    myArguments[2] = stoi(argv[i]);
+                    verifyAux(myArguments, argv[i], i);
                 }else{
                     myArguments[2] = 0;
                 }
@@ -67,7 +78,7 @@ int *readArguments(int argc, char **argv){
             else if(strcmp(argv[i], "-casos_edad")  == 0) {
                 if(i < argc-2 && hasAuxiliar(argv[i+1])){
                     i+=1;
-                    myArguments[3] = stoi(argv[i]);
+                    verifyAux(myArguments, argv[i], i);
                 }else{
                     myArguments[3] = 0;
                 }
