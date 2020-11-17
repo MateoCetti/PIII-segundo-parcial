@@ -15,7 +15,7 @@ bool verifyCSV(string arg){
 
 void verifyAux(int* myArguments, string arg, int pos){
     try {
-        myArguments[pos] = stoi(arg);
+        myArguments[pos-1] = stoi(arg);
     } catch (std::invalid_argument e) {
         myArguments[0] = -2;
     }
