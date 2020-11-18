@@ -41,7 +41,7 @@ int fillPilaCui(Caso *misCasos, int casos, Pila<Caso> *casosAux, int fecha){
     }else{
         for (int i = 0; i < casos; i++){
             if(misCasos[i].getCuiIntensivo().compare("SI") == 0){
-                if (misCasos[i].getFechaCuiIntensivo() >= fecha){
+                if (misCasos[i].getFechaCuiIntensivo() > fecha){
                     contador += 1;
                     casosAux->push(misCasos[i]);
                 }
