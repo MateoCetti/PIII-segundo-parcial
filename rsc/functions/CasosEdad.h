@@ -44,7 +44,8 @@ int getMaxEdad(Caso *misCasos, int casos){
 }
 
 /* Llenar la pila con los datos requeridos | Devuelve el contador */
-int fillPila(Caso *misCasos, int casos, Pila<Caso> *casosAux, int contador, int edad){
+int fillPila(Caso *misCasos, int casos, Pila<Caso> *casosAux, int edad){
+    int contador = 0;
     for (int i = 0; i < casos; i++){
         if(misCasos[i].getEdadAniosMeses().compare("Años") == 0){
             if (misCasos[i].getEdad() == edad){
@@ -88,7 +89,7 @@ void casosEdad(Caso *misCasos, int casos, int edad){
 
 	int contador = 0;
 
-	contador = fillPila(misCasos, casos, casosAux, contador, edad);
+	contador = fillPila(misCasos, casos, casosAux, edad);
 
 	Caso *casosPorEdad = new Caso[contador];
 

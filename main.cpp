@@ -25,7 +25,7 @@ void manageData(int *myArguments, Caso *misCasos, int casos, string csv){
             int n = myArguments[1] == 0 ? 24 : myArguments[1];
             printP(misProvincias, n, 'c');
         }
-        /* Imprimir p_casos */
+        /* Imprimir p_muertes */
         if(myArguments[2] != -1){
             int n = myArguments[2] == 0 ? 24 : myArguments[2];
             printP(misProvincias, n, 'f');

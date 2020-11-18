@@ -15,7 +15,7 @@ bool verifyCSV(string arg){
 
 void verifyAux(int* myArguments, string arg, int pos){
     try {
-        myArguments[pos-1] = stoi(arg);
+        myArguments[pos] = stoi(arg);
     } catch (std::invalid_argument e) {
         myArguments[0] = -2;
     }
@@ -61,7 +61,7 @@ int *readArguments(int argc, char **argv){
             else if(strcmp(argv[i], "-p_casos")  == 0) {
                 if(i < argc-2 && hasAuxiliar(argv[i+1])){
                     i+=1;
-                    verifyAux(myArguments, argv[i], i);
+                    verifyAux(myArguments, argv[i], 1);
 
                 }else{
                     myArguments[1] = 0;
@@ -70,7 +70,7 @@ int *readArguments(int argc, char **argv){
             else if(strcmp(argv[i], "-p_muertes")  == 0) {
                 if(i < argc-2 && hasAuxiliar(argv[i+1])){
                     i+=1;
-                    verifyAux(myArguments, argv[i], i);
+                    verifyAux(myArguments, argv[i], 2);
                 }else{
                     myArguments[2] = 0;
                 }
@@ -78,7 +78,7 @@ int *readArguments(int argc, char **argv){
             else if(strcmp(argv[i], "-casos_edad")  == 0) {
                 if(i < argc-2 && hasAuxiliar(argv[i+1])){
                     i+=1;
-                    verifyAux(myArguments, argv[i], i);
+                    verifyAux(myArguments, argv[i], 3);
                 }else{
                     myArguments[3] = 0;
                 }
