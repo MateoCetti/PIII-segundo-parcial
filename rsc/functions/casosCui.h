@@ -54,11 +54,6 @@ int fillPilaCui(Caso *misCasos, int casos, Pila<Caso> *casosAux, int fecha){
 /* Pasa los casos de la pila al array */
 void passDataCui(Caso *casosPorFecha, Pila<Caso> *casosAux, int contador){
     for (int j = 0; j < contador; j++){
-        if(casosAux->peek().getProvincia().compare("Córdoba") == 0){
-            Caso aux = casosAux->pop();
-            aux.setProvincia("Cordoba");
-            casosAux->push(aux);
-        }
         casosPorFecha[j] = casosAux->pop();
     }
 }
